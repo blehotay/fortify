@@ -9,14 +9,16 @@ import 'package:nes_ui/nes_ui.dart';
 void main() {
   testWidgets('FortifyCardFront', (tester) async {
     await mockNetworkImages(() async {
-      await tester.pumpWidget(MaterialApp(
-        theme: flutterNesTheme(),
-        home: FortifyCardFront(
-          category: 'category',
-          imageUrl: 'imageUrl',
-          title: 'title',
+      await tester.pumpWidget(
+        MaterialApp(
+          theme: flutterNesTheme(),
+          home: FortifyCardFront(
+            category: 'category',
+            imageUrl: 'imageUrl',
+            title: 'title',
+          ),
         ),
-      ));
+      );
     });
 
     expect(find.byType(FortifyCardFront), findsOneWidget);
@@ -24,14 +26,16 @@ void main() {
 
   testWidgets('FortifyCardFront finds contents ', (tester) async {
     await mockNetworkImages(() async {
-      await tester.pumpWidget(MaterialApp(
-        theme: flutterNesTheme(),
-        home: FortifyCardFront(
-          category: 'category',
-          imageUrl: 'imageUrl',
-          title: 'title',
+      await tester.pumpWidget(
+        MaterialApp(
+          theme: flutterNesTheme(),
+          home: FortifyCardFront(
+            category: 'category',
+            imageUrl: 'imageUrl',
+            title: 'title',
+          ),
         ),
-      ));
+      );
     });
 
     expect(find.byType(TitleAndCategory), findsOneWidget);
