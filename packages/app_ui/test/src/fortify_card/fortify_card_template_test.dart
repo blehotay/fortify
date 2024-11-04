@@ -7,20 +7,24 @@ import 'package:nes_ui/nes_ui.dart';
 
 void main() {
   testWidgets('FortifyCardTemplate', (tester) async {
-    await tester.pumpWidget(MaterialApp(
-      theme: flutterNesTheme(),
-      home: FortifyCardTemplate(),
-    ));
+    await tester.pumpWidget(
+      MaterialApp(
+        theme: flutterNesTheme(),
+        home: FortifyCardTemplate(),
+      ),
+    );
     expect(find.byType(FortifyCardTemplate), findsOneWidget);
   });
 
   testWidgets('ForifyCardTemplate finds contents ', (tester) async {
-    await tester.pumpWidget(MaterialApp(
-      theme: flutterNesTheme(),
-      home: FortifyCardTemplate(
-        contents: [Container()],
+    await tester.pumpWidget(
+      MaterialApp(
+        theme: flutterNesTheme(),
+        home: FortifyCardTemplate(
+          contents: [Container()],
+        ),
       ),
-    ));
+    );
     expect(find.byType(Container), findsOneWidget);
   });
 }
