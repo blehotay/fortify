@@ -9,4 +9,6 @@ class CardColectionEvent extends Equatable {
 
 class CardColectionRequested extends CardColectionEvent {
   const CardColectionRequested();
+  @override
+  List<Object?> get props => [];
 }

@@ -1,6 +1,5 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_test/flutter_test.dart';
 import 'package:card_repository/src/models/fortify_card.dart';
+import 'package:flutter_test/flutter_test.dart';
 
 void main() {
   group('FortifyCard', () {
@@ -47,8 +46,10 @@ void main() {
     });
 
     test('props returns correct values', () {
-      expect(card.props,
-          [card.title, card.description, card.imageUrl, card.category]);
+      expect(
+        card.props,
+        [card.title, card.description, card.imageUrl, card.category],
+      );
     });
   });
 }

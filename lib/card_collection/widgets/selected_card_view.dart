@@ -34,7 +34,7 @@ class SelectedCardView extends StatelessWidget {
               height: MediaQuery.sizeOf(context).height * 0.65,
               width: double.infinity,
             ),
-            Text('Back')
+            const Text('Back'),
           ],
         ),
       ),

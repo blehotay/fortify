@@ -10,7 +10,7 @@ class CardCollectionBloc extends Bloc<CardColectionEvent, CardCollectionState> {
   CardCollectionBloc({
     required CardRepository cardRepository,
   })  : _cardRepository = cardRepository,
-        super(CardCollectionState()) {
+        super(const CardCollectionState()) {
     on<CardColectionRequested>(_onEarnedCardRequested);
   }
 

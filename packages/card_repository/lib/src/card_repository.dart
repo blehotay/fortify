@@ -1,5 +1,4 @@
 import 'package:card_repository/card_repository.dart';
-import 'package:flutter/material.dart';
 
 /// {@template card_repository}
 /// A Very Good Project created by Very Good CLI.
@@ -46,7 +45,7 @@ final playerCards = [
     title: 'Open Guard Pass',
     description: 'List Steps',
     imageUrl: 'https://www.bjjee.com/wp-content/uploads/2020/05/keenan.jpg',
-  )
+  ),
 ];
 
 /// {@template card_repository}
@@ -57,18 +56,31 @@ class CardRepository {
   const CardRepository();
 
   /// Fetches a list of [FortifyCard]s.
+  /// Throws a [GetCardsFailure] if an error occurs.
   Future<List<FortifyCard>> getCards() async {
-    const Duration(seconds: 3);
-    return playerCards;
+    try {
+      return playerCards;
+    } catch (error, stackTrace) {
+      Error.throwWithStackTrace(GetCardsFailure(error), stackTrace);
+    }
   }
 }
 
+/// {@template card_repository_exception}
+/// Exception thrown by the [CardRepository].
+/// {@endtemplate}
 abstract class CardRepositoryException implements Exception {
+  /// {@macro card_repository_exception}
   const CardRepositoryException(this.error);
 
+  /// The error message.
   final Object error;
 }
 
+/// {@template get_cards_failure}
+/// Thrown when an error occurs fetching cards.
+/// {@endtemplate}
 class GetCardsFailure extends CardRepositoryException {
+  /// {@macro get_cards_failure}
   const GetCardsFailure(super.error);
 }

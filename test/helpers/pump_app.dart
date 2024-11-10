@@ -1,11 +1,9 @@
 // ignore_for_file: prefer_const_constructors
 
-import 'package:bloc_test/bloc_test.dart';
 import 'package:card_repository/card_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:fortify/l10n/l10n.dart';
 import 'package:mocktail/mocktail.dart';
 
 class _MockCardRepository extends Mock implements CardRepository {}

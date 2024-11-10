@@ -48,7 +48,8 @@ enum StartingPosition {
 
 /// A class representing a card with details about a technique or action.
 class FortifyCard extends Equatable {
-  /// Creates a [FortifyCard] with the given [title], [description], [imageUrl],and [category].
+  /// Creates a [FortifyCard] with the given [title], [description], [imageUrl]
+  /// ,and [category].
   const FortifyCard({
     required this.title,
     required this.description,
@@ -56,10 +57,12 @@ class FortifyCard extends Equatable {
     required this.category,
   });
 
-  /// The title of the card, usually representing the name of the technique or action.
+  /// The title of the card, usually representing the name of the technique
+  /// or action.
   final String title;
 
-  /// A description of the card, providing details about the technique or action.
+  /// A description of the card, providing details about the technique or
+  /// action.
   final String description;
 
   /// The URL of the image associated with the card.

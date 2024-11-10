@@ -16,8 +16,10 @@ class CardCollectionView extends StatelessWidget {
         PageStatus.inital ||
         PageStatus.loading =>
           const CircularProgressIndicator(),
-        PageStatus.error => const Center(
-            child: Text('Error'),
+        PageStatus.error => const Scaffold(
+            body: Center(
+              child: Text('Error'),
+            ),
           ),
         PageStatus.success => const CardCollectionSuccess(),
       },
@@ -33,64 +35,67 @@ class CardCollectionSuccess extends StatelessWidget {
     final l10n = context.l10n;
     final earnedCards = context.read<CardCollectionBloc>().state.earnedCards;
     return Scaffold(
-        appBar: AppBar(
-          title: Text(
-            l10n.earnedCollection,
-          ),
+      appBar: AppBar(
+        title: Text(
+          l10n.earnedCollection,
         ),
-        body: Padding(
-          padding: const EdgeInsets.only(top: 8.0),
-          child: GridView.builder(
-            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 2,
-              mainAxisSpacing: 8,
-              crossAxisSpacing: 8,
-              mainAxisExtent: MediaQuery.sizeOf(context).height * .3,
-            ),
-            padding: const EdgeInsets.all(8),
-            itemCount: earnedCards!.length,
-            itemBuilder: (context, index) {
-              return GestureDetector(
-                  onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute<void>(
-                          builder: (_) => BlocProvider.value(
-                                value: context.read<CardCollectionBloc>(),
-                                child: SelectedCardView(
-                                  title: earnedCards[index].title,
-                                  categoryText: context
-                                      .read<CardCollectionBloc>()
-                                      .state
-                                      .getcategoryText(earnedCards, index),
-                                  imageUrl: earnedCards[index].imageUrl,
-                                  catagoryColor: context
-                                      .read<CardCollectionBloc>()
-                                      .state
-                                      .getcategoryColor(earnedCards, index),
-                                ),
-                              )),
-                    );
-                  },
-                  child: CardViewCollection(
-                    title: earnedCards[index].title,
-                    imageUrl: earnedCards[index].imageUrl,
-                    categoryColor: context
-                        .read<CardCollectionBloc>()
-                        .state
-                        .getcategoryColor(earnedCards, index),
-                    categoryText: context
-                        .read<CardCollectionBloc>()
-                        .state
-                        .getcategoryText(earnedCards, index),
-                  ));
-            },
+      ),
+      body: Padding(
+        padding: const EdgeInsets.only(top: 8),
+        child: GridView.builder(
+          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisCount: 2,
+            mainAxisSpacing: 8,
+            crossAxisSpacing: 8,
+            mainAxisExtent: MediaQuery.sizeOf(context).height * .3,
           ),
-        ));
+          padding: const EdgeInsets.all(8),
+          itemCount: earnedCards!.length,
+          itemBuilder: (context, index) {
+            return GestureDetector(
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute<void>(
+                    builder: (_) => BlocProvider.value(
+                      value: context.read<CardCollectionBloc>(),
+                      child: SelectedCardView(
+                        title: earnedCards[index].title,
+                        categoryText: context
+                            .read<CardCollectionBloc>()
+                            .state
+                            .getcategoryText(earnedCards, index),
+                        imageUrl: earnedCards[index].imageUrl,
+                        catagoryColor: context
+                            .read<CardCollectionBloc>()
+                            .state
+                            .getcategoryColor(earnedCards, index),
+                      ),
+                    ),
+                  ),
+                );
+              },
+              child: CardViewCollection(
+                title: earnedCards[index].title,
+                imageUrl: earnedCards[index].imageUrl,
+                categoryColor: context
+                    .read<CardCollectionBloc>()
+                    .state
+                    .getcategoryColor(earnedCards, index),
+                categoryText: context
+                    .read<CardCollectionBloc>()
+                    .state
+                    .getcategoryText(earnedCards, index),
+              ),
+            );
+          },
+        ),
+      ),
+    );
   }
 }
 
-/// TODO(any): Use layout builder to make the card responsive
+// TODO(any): Use layout builder to make the card responsive
 class CardViewCollection extends StatelessWidget {
   const CardViewCollection({
     required this.title,

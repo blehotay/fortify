@@ -7,7 +7,6 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:fortify/card_collection/card_collection.dart';
 import 'package:mocktail/mocktail.dart';
 
-import '../../counter/view/counter_page_test.dart';
 import '../../helpers/helpers.dart';
 
 class _MockCardCollectionBloc extends Mock implements CardCollectionBloc {}
@@ -30,7 +29,7 @@ void main() {
       title: 'Kimura',
       description: 'List Steps',
       imageUrl: '',
-    )
+    ),
   ];
 
   setUp(() {
@@ -46,7 +45,7 @@ void main() {
   }
 
   group('CardCollectionPage', () {
-    testWidgets('renders CardCollectionView', (tester) async {
+    testWidgets('renders CardCollectionPage', (tester) async {
       when(() => cardRepository.getCards()).thenAnswer(
         (_) => Future.value(earnedCards),
       );
