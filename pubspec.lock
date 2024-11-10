@@ -69,6 +69,13 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.1.1"
+  card_repository:
+    dependency: "direct main"
+    description:
+      path: "packages/card_repository"
+      relative: true
+    source: path
+    version: "0.1.0+1"
   characters:
     dependency: transitive
     description:
@@ -126,7 +133,7 @@ packages:
     source: hosted
     version: "0.4.1"
   equatable:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: equatable
       sha256: c2b87cb7756efdf69892005af546c56c0b5037f54d2a88269b4f347a505e3ca2
@@ -157,6 +164,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "7.0.1"
+  flip_card:
+    dependency: "direct main"
+    description:
+      name: flip_card
+      sha256: "5d4aa58f3983cced0782f4ce45826b7eea36e8e464964d9209dcbc7a87b2292f"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.7.0"
   flutter:
     dependency: "direct main"
     description: flutter

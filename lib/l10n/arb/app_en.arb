@@ -3,5 +3,17 @@
     "counterAppBarTitle": "Counter",
     "@counterAppBarTitle": {
         "description": "Text shown in the AppBar of the Counter Page"
-    }
+    },
+    "fortifyCards": "Fortify Cards",
+    "@FortifyCards": {
+        "description": "The title of the app",
+        "type": "text",
+        "placeholders": {}
+    }, 
+    "earnedCollection": "Earned Collection",
+    "@earnedCollection": {
+        "description": "Title of the collection page.",
+        "type": "text",
+        "placeholders": {}
+    }   
 }

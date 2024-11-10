@@ -10,6 +10,10 @@ dependencies:
   app_ui:
     path: packages/app_ui
   bloc: ^8.1.4
+  card_repository: 
+    path: packages/card_repository
+  equatable: ^2.0.5
+  flip_card: ^0.7.0
   flutter:
     sdk: flutter
   flutter_bloc: ^8.1.6

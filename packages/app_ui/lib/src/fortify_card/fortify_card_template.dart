@@ -7,23 +7,28 @@ class FortifyCardTemplate extends StatelessWidget {
   ///
   /// The [contents] parameter is a list of widgets to be displayed
   /// inside the template.
-  const FortifyCardTemplate({this.contents, super.key});
+  const FortifyCardTemplate({this.contents, this.isSelectedView, super.key});
 
   /// The list of widgets to be displayed inside the template.
   final List<Widget>? contents;
 
+  /// Whether the view is selected or not.
+  final bool? isSelectedView;
+
   @override
   Widget build(BuildContext context) {
     return NesContainer(
+      height: isSelectedView ?? false
+          ? null
+          : MediaQuery.sizeOf(context).height * .8,
       padding: const EdgeInsets.all(4),
       child: Padding(
         padding: const EdgeInsets.all(4),
         child: NesContainer(
-          padding: const EdgeInsets.all(8),
+          padding: const EdgeInsets.all(2),
           backgroundColor: Colors.blueGrey,
-          // height: MediaQuery.of(context).size.height * .80,
           child: Padding(
-            padding: const EdgeInsets.all(4),
+            padding: EdgeInsets.all((isSelectedView ?? false) ? 8 : 2),
             child: SingleChildScrollView(
               child: Column(
                 children: contents ?? [],
