@@ -16,13 +16,24 @@ class CardCollectionView extends StatelessWidget {
         PageStatus.inital ||
         PageStatus.loading =>
           const CircularProgressIndicator(),
-        PageStatus.error => const Scaffold(
-            body: Center(
-              child: Text('Error'),
-            ),
-          ),
+        PageStatus.error => const CardCollectionErrorView(),
         PageStatus.success => const CardCollectionSuccess(),
       },
+    );
+  }
+}
+
+class CardCollectionErrorView extends StatelessWidget {
+  const CardCollectionErrorView({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return const Scaffold(
+      body: Center(
+        child: Text('Error'),
+      ),
     );
   }
 }
