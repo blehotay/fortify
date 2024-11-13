@@ -25,32 +25,6 @@ class CardCollectionState extends Equatable {
     );
   }
 
-  Color getcategoryColor(List<FortifyCard> earnedCards, int index) {
-    switch (earnedCards[index].category) {
-      case Category.sweep:
-        return Colors.blue;
-      case Category.pass:
-        return Colors.green;
-      case Category.submission:
-        return Colors.red;
-      case Category.takedown:
-        return Colors.orange;
-    }
-  }
-
-  String getcategoryText(List<FortifyCard> earnedCards, int index) {
-    switch (earnedCards[index].category) {
-      case Category.sweep:
-        return 'Sweep';
-      case Category.pass:
-        return 'Pass';
-      case Category.submission:
-        return 'Submission';
-      case Category.takedown:
-        return 'Takedown';
-    }
-  }
-
   @override
   List<Object?> get props => [
         earnedCards,

@@ -63,12 +63,10 @@ class CardCollectionSuccess extends StatelessWidget {
                         title: earnedCards[index].title,
                         categoryText: context
                             .read<CardCollectionBloc>()
-                            .state
                             .getcategoryText(earnedCards, index),
                         imageUrl: earnedCards[index].imageUrl,
                         catagoryColor: context
                             .read<CardCollectionBloc>()
-                            .state
                             .getcategoryColor(earnedCards, index),
                       ),
                     ),
@@ -80,11 +78,9 @@ class CardCollectionSuccess extends StatelessWidget {
                 imageUrl: earnedCards[index].imageUrl,
                 categoryColor: context
                     .read<CardCollectionBloc>()
-                    .state
                     .getcategoryColor(earnedCards, index),
                 categoryText: context
                     .read<CardCollectionBloc>()
-                    .state
                     .getcategoryText(earnedCards, index),
               ),
             );
