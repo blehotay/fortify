@@ -1,12 +1,11 @@
+import 'package:api_client/api_client.dart';
 import 'package:card_repository/card_repository.dart';
 
-/// {@template card_repository}
-/// A Very Good Project created by Very Good CLI.
-/// {@endtemplate}
-
+/// mocked cards
 final playerCards = [
   const FortifyCard(
     category: Category.pass,
+    startingPosition: StartingPosition.standing,
     title: 'Knee Slice',
     description: 'List Steps',
     imageUrl:
@@ -14,6 +13,7 @@ final playerCards = [
   ),
   const FortifyCard(
     category: Category.submission,
+    startingPosition: StartingPosition.halfGuard,
     title: 'Kimura',
     description: 'List Steps',
     imageUrl:
@@ -21,6 +21,7 @@ final playerCards = [
   ),
   const FortifyCard(
     category: Category.sweep,
+    startingPosition: StartingPosition.guard,
     title: 'Flower Sweep',
     description: 'List Steps',
     imageUrl:
@@ -28,6 +29,7 @@ final playerCards = [
   ),
   const FortifyCard(
     category: Category.submission,
+    startingPosition: StartingPosition.guard,
     title: 'Arm Bar from Guard',
     description: 'List Steps',
     imageUrl:
@@ -35,6 +37,7 @@ final playerCards = [
   ),
   const FortifyCard(
     category: Category.takedown,
+    startingPosition: StartingPosition.standing,
     title: 'Double Leg',
     description: 'List Steps',
     imageUrl:
@@ -42,6 +45,7 @@ final playerCards = [
   ),
   const FortifyCard(
     category: Category.pass,
+    startingPosition: StartingPosition.standing,
     title: 'Open Guard Pass',
     description: 'List Steps',
     imageUrl: 'https://www.bjjee.com/wp-content/uploads/2020/05/keenan.jpg',
@@ -53,13 +57,28 @@ final playerCards = [
 /// {@endtemplate}
 class CardRepository {
   /// {@macro card_repository}
-  const CardRepository();
+  const CardRepository({
+    required FortifyCardResource fortifyCardResource,
+  }) : _fortifyCardResource = fortifyCardResource;
+
+  final FortifyCardResource _fortifyCardResource;
 
   /// Fetches a list of [FortifyCard]s.
   /// Throws a [GetCardsFailure] if an error occurs.
   Future<List<FortifyCard>> getCards() async {
     try {
-      return playerCards;
+      // final cardList = (await _fortifyCardResource.getFortifyCards())
+      //     .map((data) => FortifyCard(
+      //           title: data.title,
+      //           description: data.descripton,
+      //           imageUrl: data.imageUrl,
+      //           // TODO(ben): Convert data.category and data.startingPosition to Category and StartingPosition
+      //           category: data.category as Category,
+      //           startingPosition: data.startingPosition as StartingPosition,
+      //         ))
+      //     .toList();
+      final cardList = playerCards;
+      return cardList;
     } catch (error, stackTrace) {
       Error.throwWithStackTrace(GetCardsFailure(error), stackTrace);
     }

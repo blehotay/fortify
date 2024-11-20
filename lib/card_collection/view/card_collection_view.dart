@@ -15,25 +15,10 @@ class CardCollectionView extends StatelessWidget {
       builder: (context, state) => switch (state.status) {
         PageStatus.inital ||
         PageStatus.loading =>
-          const CircularProgressIndicator(),
+          const CardCollectionLoadingView(),
         PageStatus.error => const CardCollectionErrorView(),
         PageStatus.success => const CardCollectionSuccess(),
       },
-    );
-  }
-}
-
-class CardCollectionErrorView extends StatelessWidget {
-  const CardCollectionErrorView({
-    super.key,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return const Scaffold(
-      body: Center(
-        child: Text('Error'),
-      ),
     );
   }
 }
@@ -107,15 +92,15 @@ class CardViewCollection extends StatelessWidget {
   const CardViewCollection({
     required this.title,
     required this.imageUrl,
-    required this.categoryColor,
-    required this.categoryText,
+    this.categoryColor,
+    this.categoryText,
     super.key,
   });
 
   final String title;
   final String imageUrl;
-  final Color categoryColor;
-  final String categoryText;
+  final Color? categoryColor;
+  final String? categoryText;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -143,9 +128,9 @@ class CardViewCollection extends StatelessWidget {
               ),
               Container(
                 padding: const EdgeInsets.all(2),
-                color: categoryColor,
+                color: categoryColor ?? Colors.white,
                 child: Text(
-                  categoryText,
+                  categoryText ?? '',
                   style:
                       const TextStyle(fontSize: 6, fontWeight: FontWeight.bold),
                 ),
@@ -204,6 +189,36 @@ class CardViewCollection extends StatelessWidget {
             ),
           ),
         ],
+      ),
+    );
+  }
+}
+
+class CardCollectionErrorView extends StatelessWidget {
+  const CardCollectionErrorView({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return const Scaffold(
+      body: Center(
+        child: Text('Error'),
+      ),
+    );
+  }
+}
+
+class CardCollectionLoadingView extends StatelessWidget {
+  const CardCollectionLoadingView({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return const Scaffold(
+      body: Center(
+        child: CircularProgressIndicator(),
       ),
     );
   }

@@ -15,18 +15,21 @@ void main() {
   final earnedCards = [
     FortifyCard(
       category: Category.pass,
+      startingPosition: StartingPosition.standing,
       title: 'Hip Pin Pass',
       description: 'List Steps',
       imageUrl: '',
     ),
     FortifyCard(
       category: Category.submission,
+      startingPosition: StartingPosition.halfGuard,
       title: 'Kimura',
       description: 'List Steps',
       imageUrl: '',
     ),
     FortifyCard(
       category: Category.takedown,
+      startingPosition: StartingPosition.standing,
       title: 'Double Leg',
       description: 'List Steps',
       imageUrl: '',

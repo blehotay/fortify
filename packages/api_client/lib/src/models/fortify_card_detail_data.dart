@@ -1,7 +1,10 @@
 import 'package:equatable/equatable.dart';
+import 'package:json_annotation/json_annotation.dart';
+
+part 'fortify_card_detail_data.g.dart';
 
 /// Enum representing the categories of techniques or actions.
-enum Category {
+enum CategoryData {
   /// A technique where an individual sweeps their opponent.
   sweep,
 
@@ -16,7 +19,7 @@ enum Category {
 }
 
 /// Enum representing various starting positions in grappling or martial arts.
-enum StartingPosition {
+enum StartingPositionData {
   /// Starting position where both competitors are standing.
   standing,
 
@@ -46,58 +49,46 @@ enum StartingPosition {
 }
 
 /// A class representing a card with details about a technique or action.
-class FortifyCard extends Equatable {
-  /// Creates a [FortifyCard] with the given [title], [description],
+@JsonSerializable()
+class FortifyCardData extends Equatable {
+  /// Creates a [FortifyCardData] with the given [title], [descripton],
   /// [imageUrl],[startingPosition],and [category].
-  const FortifyCard({
+  const FortifyCardData({
     required this.title,
-    required this.description,
     required this.imageUrl,
     required this.category,
     required this.startingPosition,
+    required this.descripton,
   });
 
-  /// The title of the card, usually representing the name of the technique
-  /// or action.
+  /// Creates a [FortifyCardData] from a json
+  factory FortifyCardData.fromJson(Map<String, dynamic> json) =>
+      _$FortifyCardDataFromJson(json);
+
+  /// The title of the card.
   final String title;
 
-  /// A description of the card, providing details about the technique or
-  /// action.
-  final String description;
-
-  /// The URL of the image associated with the card.
+  /// The image url of the card.
   final String imageUrl;
 
-  /// The category of the technique or action represented by the card.
-  final Category category;
+  /// The category of the card.
+  final CategoryData category;
 
-  /// The starting position for the technique or action represented by the card.
-  final StartingPosition startingPosition;
+  /// The starting position of the card.
+  final StartingPositionData startingPosition;
 
-  /// Creates a copy of this [FortifyCard] but with the
-  /// given parameters replaced by new values.
-  FortifyCard copyWith({
-    String? title,
-    String? description,
-    String? imageUrl,
-    Category? category,
-    StartingPosition? startingPosition,
-  }) {
-    return FortifyCard(
-      title: title ?? this.title,
-      description: description ?? this.description,
-      imageUrl: imageUrl ?? this.imageUrl,
-      category: category ?? this.category,
-      startingPosition: startingPosition ?? this.startingPosition,
-    );
-  }
+  /// The description of the card.
+  final String descripton;
+
+  /// Converts the current instance to a json
+  Map<String, dynamic> toJson() => _$FortifyCardDataToJson(this);
 
   @override
   List<Object?> get props => [
         title,
-        description,
         imageUrl,
         category,
+        descripton,
         startingPosition,
       ];
 }

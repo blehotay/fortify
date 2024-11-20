@@ -8,6 +8,7 @@ void main() {
       description: 'A submission technique.',
       imageUrl: 'http://example.com/armbar.png',
       category: Category.submission,
+      startingPosition: StartingPosition.guard,
     );
 
     const card2 = FortifyCard(
@@ -15,6 +16,7 @@ void main() {
       description: 'A submission technique.',
       imageUrl: 'http://example.com/armbar.png',
       category: Category.pass,
+      startingPosition: StartingPosition.guard,
     );
 
     test('supports value equality', () {
