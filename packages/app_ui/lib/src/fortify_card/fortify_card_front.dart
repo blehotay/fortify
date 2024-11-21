@@ -6,11 +6,12 @@ import 'package:nes_ui/nes_ui.dart';
 class FortifyCardFront extends StatelessWidget {
   /// Creates a [FortifyCardFront] widget.
   ///
-  /// The [title], [category], and [imageUrl] parameters must not be null.
+  /// The [title], [categoryText], and [imageUrl] parameters must not be null.
   const FortifyCardFront({
     required this.title,
-    required this.category,
+    required this.categoryText,
     required this.imageUrl,
+    required this.catogryColor,
     super.key,
   });
 
@@ -18,10 +19,13 @@ class FortifyCardFront extends StatelessWidget {
   final String title;
 
   /// The category of the fortify card.
-  final String category;
+  final String categoryText;
 
   /// The URL of the image to be displayed on the fortify card.
   final String imageUrl;
+
+  /// The color associated with the category of the fortify card.
+  final Color catogryColor;
 
   @override
   Widget build(BuildContext context) {
@@ -29,8 +33,13 @@ class FortifyCardFront extends StatelessWidget {
       body: Padding(
         padding: const EdgeInsets.all(8),
         child: FortifyCardTemplate(
+          isSelectedView: true,
           contents: [
-            TitleAndCategory(title: title, category: category),
+            TitleAndCategory(
+              title: title,
+              categoryText: categoryText,
+              categoryColor: catogryColor,
+            ),
             const SizedBox(
               height: 16,
             ),
@@ -52,10 +61,11 @@ class FortifyCardFront extends StatelessWidget {
 class TitleAndCategory extends StatelessWidget {
   /// Creates a [TitleAndCategory] widget.
   ///
-  /// The [title] and [category] parameters must not be null.
+  /// The [title] and [categoryText] parameters must not be null.
   const TitleAndCategory({
     required this.title,
-    required this.category,
+    required this.categoryText,
+    required this.categoryColor,
     super.key,
   });
 
@@ -63,7 +73,10 @@ class TitleAndCategory extends StatelessWidget {
   final String title;
 
   /// The category of the fortify card.
-  final String category;
+  final String categoryText;
+
+  /// The color associated with the category of the fortify card.
+  final Color categoryColor;
 
   @override
   Widget build(BuildContext context) {
@@ -81,9 +94,9 @@ class TitleAndCategory extends StatelessWidget {
         ),
         NesContainer(
           padding: const EdgeInsets.all(8),
-          backgroundColor: Colors.redAccent,
+          backgroundColor: categoryColor,
           child: NesRunningText(
-            text: category,
+            text: categoryText,
           ),
         ),
       ],

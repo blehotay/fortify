@@ -13,9 +13,10 @@ void main() {
         MaterialApp(
           theme: flutterNesTheme(),
           home: FortifyCardFront(
-            category: 'category',
+            categoryText: 'category',
             imageUrl: 'imageUrl',
             title: 'title',
+            catogryColor: Colors.red,
           ),
         ),
       );
@@ -30,9 +31,10 @@ void main() {
         MaterialApp(
           theme: flutterNesTheme(),
           home: FortifyCardFront(
-            category: 'category',
+            categoryText: 'category',
             imageUrl: 'imageUrl',
             title: 'title',
+            catogryColor: Colors.red,
           ),
         ),
       );
