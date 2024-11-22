@@ -9,6 +9,10 @@ void main() {
       imageUrl: 'http://example.com/armbar.png',
       category: Category.submission,
       startingPosition: StartingPosition.guard,
+      earnedCardDate: 'earnedDate',
+      timesTaught: 'timesTaught',
+      timesHitLiveRounds: 'timesHitLiveRounds',
+      lastTimeDrilled: 'lastTimeDrilled',
     );
 
     const card2 = FortifyCard(
@@ -17,6 +21,10 @@ void main() {
       imageUrl: 'http://example.com/armbar.png',
       category: Category.pass,
       startingPosition: StartingPosition.guard,
+      earnedCardDate: 'earnedDate',
+      timesTaught: 'timesTaught',
+      timesHitLiveRounds: 'timesHitLiveRounds',
+      lastTimeDrilled: 'lastTimeDrilled',
     );
 
     test('supports value equality', () {
@@ -26,11 +34,12 @@ void main() {
 
     test('copyWith creates a copy with updated values', () {
       final updatedCard = card.copyWith(
-          title: 'Updated Title',
-          description: 'Updated Description',
-          imageUrl: 'http://example.com/updated.png',
-          category: Category.pass,
-          startingPosition: StartingPosition.standing);
+        title: 'Updated Title',
+        description: 'Updated Description',
+        imageUrl: 'http://example.com/updated.png',
+        category: Category.pass,
+        startingPosition: StartingPosition.standing,
+      );
 
       expect(updatedCard.title, 'Updated Title');
       expect(updatedCard.description, 'Updated Description');

@@ -18,24 +18,30 @@ class FortifyCardTemplate extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return NesContainer(
+      backgroundColor: const Color.fromARGB(255, 172, 183, 187),
       height: isSelectedView ?? false
           ? null
           : MediaQuery.sizeOf(context).height * .8,
       padding: const EdgeInsets.all(4),
       child: Padding(
-        padding: const EdgeInsets.all(4),
-        child: NesContainer(
-          padding: const EdgeInsets.all(2),
-          backgroundColor: Colors.blueGrey,
-          child: Padding(
-            padding: EdgeInsets.all((isSelectedView ?? false) ? 8 : 2),
-            child: SingleChildScrollView(
-              child: Column(
-                children: contents ?? [],
-              ),
-            ),
+        padding: EdgeInsets.all((isSelectedView ?? false) ? 8 : 2),
+        child: SingleChildScrollView(
+          child: Column(
+            children: contents ?? [],
           ),
         ),
+        // child: NesContainer(
+        //   padding: const EdgeInsets.all(2),
+        //   backgroundColor: Colors.blueGrey,
+        //   child: Padding(
+        //     padding: EdgeInsets.all((isSelectedView ?? false) ? 8 : 2),
+        //     child: SingleChildScrollView(
+        //       child: Column(
+        //         children: contents ?? [],
+        //       ),
+        //     ),
+        //   ),
+        // ),
       ),
     );
   }

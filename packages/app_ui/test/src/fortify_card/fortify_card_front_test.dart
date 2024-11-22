@@ -17,6 +17,10 @@ void main() {
             imageUrl: 'imageUrl',
             title: 'title',
             categoryColor: Colors.red,
+            earnedCardDate: 'earnedDate',
+            timesTaught: 'timesTaught',
+            timesHitLiveRounds: 'timesHitLiveRounds',
+            lastTimeDrilled: 'lastTimeDrilled',
           ),
         ),
       );
@@ -35,6 +39,10 @@ void main() {
             imageUrl: 'imageUrl',
             title: 'title',
             categoryColor: Colors.red,
+            earnedCardDate: 'earnedDate',
+            timesTaught: 'timesTaught',
+            timesHitLiveRounds: 'timesHitLiveRounds',
+            lastTimeDrilled: 'lastTimeDrilled',
           ),
         ),
       );

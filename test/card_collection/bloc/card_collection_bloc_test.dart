@@ -19,6 +19,10 @@ void main() {
       title: 'Hip Pin Pass',
       description: 'List Steps',
       imageUrl: '',
+      earnedCardDate: 'earnedDate',
+      timesTaught: 'timesTaught',
+      timesHitLiveRounds: 'timesHitLiveRounds',
+      lastTimeDrilled: 'lastTimeDrilled',
     ),
     FortifyCard(
       category: Category.submission,
@@ -26,6 +30,10 @@ void main() {
       title: 'Kimura',
       description: 'List Steps',
       imageUrl: '',
+      earnedCardDate: 'earnedDate',
+      timesTaught: 'timesTaught',
+      timesHitLiveRounds: 'timesHitLiveRounds',
+      lastTimeDrilled: 'lastTimeDrilled',
     ),
     FortifyCard(
       category: Category.takedown,
@@ -33,6 +41,10 @@ void main() {
       title: 'Double Leg',
       description: 'List Steps',
       imageUrl: '',
+      earnedCardDate: 'earnedDate',
+      timesTaught: 'timesTaught',
+      timesHitLiveRounds: 'timesHitLiveRounds',
+      lastTimeDrilled: 'lastTimeDrilled',
     ),
   ];
   setUp(() {

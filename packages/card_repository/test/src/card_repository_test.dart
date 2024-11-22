@@ -20,6 +20,10 @@ void main() {
       description: 'List Steps',
       imageUrl: 'imageUrl',
       startingPosition: StartingPosition.standing,
+      earnedCardDate: 'earnedDate',
+      timesTaught: 'timesTaught',
+      timesHitLiveRounds: 'timesHitLiveRounds',
+      lastTimeDrilled: 'lastTimeDrilled',
     ),
     const FortifyCard(
       category: Category.submission,
@@ -27,6 +31,10 @@ void main() {
       description: 'List Steps',
       imageUrl: 'imageUrl',
       startingPosition: StartingPosition.halfGuard,
+      earnedCardDate: 'earnedDate',
+      timesTaught: 'timesTaught',
+      timesHitLiveRounds: 'timesHitLiveRounds',
+      lastTimeDrilled: 'lastTimeDrilled',
     ),
   ];
 
@@ -37,6 +45,10 @@ void main() {
       description: 'List Steps',
       imageUrl: 'imageUrl',
       startingPosition: StartingPositionData.standing,
+      earnedCardDate: 'earnedDate',
+      timesTaught: 'timesTaught',
+      timesHitLiveRounds: 'timesHitLiveRounds',
+      lastTimeDrilled: 'lastTimeDrilled',
     ),
     const FortifyCardData(
       category: CategoryData.submission,
@@ -44,6 +56,10 @@ void main() {
       description: 'List Steps',
       imageUrl: 'imageUrl',
       startingPosition: StartingPositionData.halfGuard,
+      earnedCardDate: 'earnedDate',
+      timesTaught: 'timesTaught',
+      timesHitLiveRounds: 'timesHitLiveRounds',
+      lastTimeDrilled: 'lastTimeDrilled',
     ),
   ];
 

@@ -31,6 +31,10 @@ void main() {
       title: 'Hip Pin Pass',
       description: 'List Steps',
       imageUrl: 'imageUrl',
+      earnedCardDate: 'earnedDate',
+      timesTaught: 'timesTaught',
+      timesHitLiveRounds: 'timesHitLiveRounds',
+      lastTimeDrilled: 'lastTimeDrilled',
     ),
     // FortifyCard(
     //   category: Category.submission,

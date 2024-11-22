@@ -102,6 +102,10 @@ class FortifyCard extends Equatable {
     required this.imageUrl,
     required this.category,
     required this.startingPosition,
+    required this.lastTimeDrilled,
+    required this.timesHitLiveRounds,
+    required this.earnedCardDate,
+    required this.timesTaught,
   });
 
   /// The title of the card, usually representing the name of the technique
@@ -121,6 +125,14 @@ class FortifyCard extends Equatable {
   /// The starting position for the technique or action represented by the card.
   final StartingPosition startingPosition;
 
+  final String timesHitLiveRounds;
+
+  final String timesTaught;
+
+  final String lastTimeDrilled;
+
+  final String earnedCardDate;
+
   /// Creates a copy of this [FortifyCard] but with the
   /// given parameters replaced by new values.
   FortifyCard copyWith({
@@ -129,6 +141,10 @@ class FortifyCard extends Equatable {
     String? imageUrl,
     Category? category,
     StartingPosition? startingPosition,
+    String? timesHitLiveRounds,
+    String? timesTaught,
+    String? lastTimeDrilled,
+    String? earnedCardDate,
   }) {
     return FortifyCard(
       title: title ?? this.title,
@@ -136,6 +152,10 @@ class FortifyCard extends Equatable {
       imageUrl: imageUrl ?? this.imageUrl,
       category: category ?? this.category,
       startingPosition: startingPosition ?? this.startingPosition,
+      timesHitLiveRounds: timesHitLiveRounds ?? this.timesHitLiveRounds,
+      timesTaught: timesTaught ?? this.timesTaught,
+      lastTimeDrilled: lastTimeDrilled ?? this.lastTimeDrilled,
+      earnedCardDate: earnedCardDate ?? this.earnedCardDate,
     );
   }
 
@@ -146,5 +166,9 @@ class FortifyCard extends Equatable {
         imageUrl,
         category,
         startingPosition,
+        timesHitLiveRounds,
+        timesTaught,
+        lastTimeDrilled,
+        earnedCardDate,
       ];
 }

@@ -12,6 +12,10 @@ class FortifyCardFront extends StatelessWidget {
     required this.categoryText,
     required this.imageUrl,
     required this.categoryColor,
+    required this.timesTaught,
+    required this.earnedCardDate,
+    required this.lastTimeDrilled,
+    required this.timesHitLiveRounds,
     super.key,
   });
 
@@ -27,31 +31,41 @@ class FortifyCardFront extends StatelessWidget {
   /// The color associated with the category of the fortify card.
   final Color categoryColor;
 
+  final String earnedCardDate;
+
+  final String lastTimeDrilled;
+
+  final String timesHitLiveRounds;
+
+  final String timesTaught;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Padding(
-        padding: const EdgeInsets.all(8),
-        child: FortifyCardTemplate(
-          isSelectedView: true,
-          contents: [
-            TitleAndCategory(
-              title: title,
-              categoryText: categoryText,
-              categoryColor: categoryColor,
-            ),
-            const SizedBox(
-              height: 16,
-            ),
-            ImageSection(
-              imageUrl: imageUrl,
-            ),
-            const SizedBox(
-              height: 4,
-            ),
-            const DetailWidget(),
-          ],
-        ),
+      body: FortifyCardTemplate(
+        isSelectedView: true,
+        contents: [
+          TitleAndCategory(
+            title: title,
+            categoryText: categoryText,
+            categoryColor: categoryColor,
+          ),
+          const SizedBox(
+            height: 16,
+          ),
+          ImageSection(
+            imageUrl: imageUrl,
+          ),
+          const SizedBox(
+            height: 4,
+          ),
+          DetailWidget(
+            earnedCardDate: earnedCardDate,
+            lastTimeDrilled: lastTimeDrilled,
+            timesHitLiveRounds: timesHitLiveRounds,
+            timesTaught: timesTaught,
+          ),
+        ],
       ),
     );
   }
@@ -82,15 +96,17 @@ class TitleAndCategory extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(
-          title,
-          style: const TextStyle(
-            fontSize: 24,
-            fontWeight: FontWeight.bold,
-            color: Colors.white,
+        Expanded(
+          child: Text(
+            title,
+            style: const TextStyle(
+              fontSize: 18,
+              fontWeight: FontWeight.bold,
+              color: Colors.white,
+            ),
           ),
-          overflow: TextOverflow.ellipsis,
         ),
         NesContainer(
           padding: const EdgeInsets.all(8),
@@ -121,13 +137,23 @@ class ImageSection extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 4),
-      child: NesContainer(
-        padding: const EdgeInsets.all(8),
-        height: MediaQuery.of(context).size.height * .50,
-        child: Image.network(
-          imageUrl,
-          fit: BoxFit.fitHeight,
-        ),
+      child: Stack(
+        alignment: Alignment.center,
+        children: [
+          NesContainer(
+            padding: const EdgeInsets.all(8),
+            height: MediaQuery.of(context).size.height * .50,
+            child: Image.network(
+              imageUrl,
+              fit: BoxFit.cover,
+            ),
+          ),
+          Icon(
+            Icons.play_circle_fill_outlined,
+            size: 100,
+            color: Colors.white,
+          )
+        ],
       ),
     );
   }
@@ -137,8 +163,24 @@ class ImageSection extends StatelessWidget {
 class DetailWidget extends StatelessWidget {
   /// Creates a [DetailWidget] widget.
   const DetailWidget({
+    required this.earnedCardDate,
+    required this.lastTimeDrilled,
+    required this.timesHitLiveRounds,
+    required this.timesTaught,
     super.key,
   });
+
+  /// The date the card was earned.
+  final String earnedCardDate;
+
+  /// The last time the card was drilled;
+  final String lastTimeDrilled;
+
+  /// The times the user has hit in live rounds
+  final String timesHitLiveRounds;
+
+  /// The number of times the move was taught
+  final String timesTaught;
 
   @override
   Widget build(BuildContext context) {
@@ -150,28 +192,39 @@ class DetailWidget extends StatelessWidget {
         backgroundColor: Colors.black12,
         padding: const EdgeInsets.all(16),
         child: SingleChildScrollView(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              DetailRow(
-                icon: NesIcons.hammer,
-                label: 'Difficulty',
-                value: 'Beginner',
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  DetailRow(
+                    icon: NesIcons.download,
+                    label: 'Issued',
+                    value: earnedCardDate,
+                  ),
+                  DetailColumn(
+                    icon: NesIcons.clock,
+                    label: 'Last Drilled',
+                    value: lastTimeDrilled,
+                  ),
+                ],
               ),
-              DetailRow(
-                icon: NesIcons.check,
-                label: 'Issued',
-                value: '10/12/23',
-              ),
-              DetailRow(
-                icon: NesIcons.energy,
-                label: 'Times Taught',
-                value: '10',
-              ),
-              DetailRow(
-                icon: NesIcons.pickaxe,
-                label: 'Last',
-                value: '10/12/23',
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.end,
+                children: [
+                  DetailRow(
+                    icon: NesIcons.exchange,
+                    label: 'Times Taught',
+                    value: timesTaught,
+                  ),
+                  DetailRow(
+                    icon: NesIcons.upperArmor,
+                    label: 'Hit Live',
+                    value: timesHitLiveRounds,
+                  ),
+                ],
               ),
             ],
           ),
@@ -208,10 +261,72 @@ class DetailRow extends StatelessWidget {
       children: [
         NesIcon(
           iconData: icon,
-          size: const Size(24, 24),
+          size: const Size(12, 12),
         ),
-        Text('$label: '),
-        Text(value),
+        const SizedBox(
+          width: 4,
+        ),
+        Text(
+          '$label:',
+          style: const TextStyle(fontSize: 8),
+        ),
+        Text(
+          value,
+          style: const TextStyle(fontSize: 10, fontWeight: FontWeight.bold),
+        ),
+      ],
+    );
+  }
+}
+
+/// A widget that displays a column of detailed information.
+class DetailColumn extends StatelessWidget {
+  /// Creates a [DetailColumn] widget.
+  ///
+  /// The [label], [value], and [icon] parameters must not be null.
+  const DetailColumn({
+    required this.label,
+    required this.value,
+    required this.icon,
+    super.key,
+  });
+
+  /// The label of the detail.
+  final String label;
+
+  /// The value of the detail.
+  final String value;
+
+  /// The icon representing the detail.
+  final NesIconData icon;
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        Row(
+          children: [
+            NesIcon(
+              iconData: icon,
+              size: const Size(12, 12),
+            ),
+            const SizedBox(
+              width: 4,
+            ),
+            Text(
+              '$label:',
+              style: const TextStyle(fontSize: 8),
+            ),
+          ],
+        ),
+        Row(
+          children: [
+            Text(
+              value,
+              style: const TextStyle(fontSize: 10, fontWeight: FontWeight.bold),
+            ),
+          ],
+        ),
       ],
     );
   }

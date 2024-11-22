@@ -59,6 +59,10 @@ class FortifyCardData extends Equatable {
     required this.category,
     required this.startingPosition,
     required this.description,
+    required this.lastTimeDrilled,
+    required this.timesHitLiveRounds,
+    required this.earnedCardDate,
+    required this.timesTaught,
   });
 
   /// Creates a [FortifyCardData] from a json
@@ -80,6 +84,14 @@ class FortifyCardData extends Equatable {
   /// The description of the card.
   final String description;
 
+  final String timesHitLiveRounds;
+
+  final String timesTaught;
+
+  final String lastTimeDrilled;
+
+  final String earnedCardDate;
+
   /// Converts the current instance to a json
   Map<String, dynamic> toJson() => _$FortifyCardDataToJson(this);
 
@@ -90,5 +102,9 @@ class FortifyCardData extends Equatable {
         category,
         description,
         startingPosition,
+        timesHitLiveRounds,
+        timesTaught,
+        lastTimeDrilled,
+        earnedCardDate,
       ];
 }

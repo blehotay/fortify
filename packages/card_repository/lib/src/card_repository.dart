@@ -26,6 +26,10 @@ class CardRepository {
               startingPosition: StartingPosition.convertToStartingPosition(
                 data.startingPosition,
               ),
+              timesHitLiveRounds: data.timesHitLiveRounds,
+              earnedCardDate: data.earnedCardDate,
+              lastTimeDrilled: data.lastTimeDrilled,
+              timesTaught: data.timesTaught,
             ),
           )
           .toList();
