@@ -17,7 +17,7 @@ void main() {
       expect(FortifyCardResource(client: mockClient), isNotNull);
     });
 
-    test('can getCommunity', () async {
+    test('can getCards', () async {
       when(() => mockClient.get(any())).thenAnswer(
         (_) => Future.value(
           http.Response(

@@ -73,6 +73,7 @@ class CardCollectionSuccess extends StatelessWidget {
               child: CardViewCollection(
                 title: earnedCards[index].title,
                 imageUrl: earnedCards[index].imageUrl,
+                description: earnedCards[index].description,
                 categoryColor: context
                     .read<CardCollectionBloc>()
                     .getCategoryColor(earnedCards, index),
@@ -93,6 +94,7 @@ class CardViewCollection extends StatelessWidget {
   const CardViewCollection({
     required this.title,
     required this.imageUrl,
+    required this.description,
     this.categoryColor,
     this.categoryText,
     super.key,
@@ -100,6 +102,7 @@ class CardViewCollection extends StatelessWidget {
 
   final String title;
   final String imageUrl;
+  final String description;
   final Color? categoryColor;
   final String? categoryText;
   @override
@@ -171,22 +174,9 @@ class CardViewCollection extends StatelessWidget {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: [
-                          NesIcon(
-                            iconData: NesIcons.hammer,
-                            size: const Size(8, 8),
-                          ),
-                          const Text(
-                            'Difficulty: ',
-                            style: TextStyle(fontSize: 4),
-                          ),
-                          const Text(
-                            'Beginner',
-                            style: TextStyle(fontSize: 4),
-                          ),
-                        ],
+                      Text(
+                        description,
+                        style: const TextStyle(fontSize: 4),
                       ),
                     ],
                   ),
