@@ -7,35 +7,38 @@ class SelectedCardView extends StatelessWidget {
     required this.title,
     required this.categoryText,
     required this.imageUrl,
-    required this.catagoryColor,
+    required this.categoryColor,
     super.key,
   });
 
   final String title;
   final String categoryText;
   final String imageUrl;
-  final Color catagoryColor;
+  final Color categoryColor;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(),
-      body: FlipCard(
-        front: FortifyCardFront(
-          title: title,
-          categoryText: categoryText,
-          imageUrl: imageUrl,
-          catogryColor: catagoryColor,
-        ),
-        back: FortifyCardTemplate(
-          isSelectedView: true,
-          contents: [
-            SizedBox(
-              height: MediaQuery.sizeOf(context).height * 0.65,
-              width: double.infinity,
-            ),
-            const Text('Back'),
-          ],
+      body: Hero(
+        tag: const Key('card_hero'),
+        child: FlipCard(
+          front: FortifyCardFront(
+            title: title,
+            categoryText: categoryText,
+            imageUrl: imageUrl,
+            categoryColor: categoryColor,
+          ),
+          back: FortifyCardTemplate(
+            isSelectedView: true,
+            contents: [
+              SizedBox(
+                height: MediaQuery.sizeOf(context).height * 0.65,
+                width: double.infinity,
+              ),
+              const Text('Back'),
+            ],
+          ),
         ),
       ),
     );

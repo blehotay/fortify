@@ -13,7 +13,7 @@ class CardCollectionView extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<CardCollectionBloc, CardCollectionState>(
       builder: (context, state) => switch (state.status) {
-        PageStatus.inital ||
+        PageStatus.initial ||
         PageStatus.loading =>
           const CardCollectionLoadingView(),
         PageStatus.error => const CardCollectionErrorView(),
@@ -48,6 +48,7 @@ class CardCollectionSuccess extends StatelessWidget {
           padding: const EdgeInsets.all(8),
           itemCount: earnedCards!.length,
           itemBuilder: (context, index) {
+            // TODO(ben): Use transform to make card expand on tap
             return GestureDetector(
               onTap: () {
                 Navigator.push(
@@ -59,11 +60,11 @@ class CardCollectionSuccess extends StatelessWidget {
                         title: earnedCards[index].title,
                         categoryText: context
                             .read<CardCollectionBloc>()
-                            .getcategoryText(earnedCards, index),
+                            .getCategoryText(earnedCards, index),
                         imageUrl: earnedCards[index].imageUrl,
-                        catagoryColor: context
+                        categoryColor: context
                             .read<CardCollectionBloc>()
-                            .getcategoryColor(earnedCards, index),
+                            .getCategoryColor(earnedCards, index),
                       ),
                     ),
                   ),
@@ -74,10 +75,10 @@ class CardCollectionSuccess extends StatelessWidget {
                 imageUrl: earnedCards[index].imageUrl,
                 categoryColor: context
                     .read<CardCollectionBloc>()
-                    .getcategoryColor(earnedCards, index),
+                    .getCategoryColor(earnedCards, index),
                 categoryText: context
                     .read<CardCollectionBloc>()
-                    .getcategoryText(earnedCards, index),
+                    .getCategoryText(earnedCards, index),
               ),
             );
           },
@@ -104,91 +105,96 @@ class CardViewCollection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: FortifyCardTemplate(
-        isSelectedView: false,
-        contents: [
-          const SizedBox(
-            height: 2,
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: [
-              const SizedBox(
-                width: 8,
+      body: Hero(
+        tag: const Key('card_hero'),
+        child: FortifyCardTemplate(
+          isSelectedView: false,
+          contents: [
+            const SizedBox(
+              height: 2,
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                const SizedBox(
+                  width: 8,
+                ),
+                Expanded(
+                  child: Text(
+                    title,
+                    style: const TextStyle(
+                      fontSize: 8,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white,
+                    ),
+                  ),
+                ),
+                Container(
+                  padding: const EdgeInsets.all(2),
+                  color: categoryColor ?? Colors.white,
+                  child: Text(
+                    categoryText ?? '',
+                    style: const TextStyle(
+                      fontSize: 6,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ),
+                const SizedBox(
+                  width: 4,
+                ),
+              ],
+            ),
+            const SizedBox(
+              height: 2,
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 4),
+              child: NesContainer(
+                padding: const EdgeInsets.all(8),
+                height: MediaQuery.of(context).size.height * .15,
+                width: double.infinity,
+                child: Image.network(
+                  imageUrl,
+                  fit: BoxFit.fitHeight,
+                ),
               ),
-              Expanded(
-                child: Text(
-                  title,
-                  style: const TextStyle(
-                    fontSize: 8,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.white,
+            ),
+            NesContainer(
+              padding: const EdgeInsets.all(8),
+              height: MediaQuery.of(context).size.height * .1,
+              width: double.infinity,
+              child: NesContainer(
+                backgroundColor: Colors.black12,
+                padding: const EdgeInsets.all(8),
+                child: SingleChildScrollView(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          NesIcon(
+                            iconData: NesIcons.hammer,
+                            size: const Size(8, 8),
+                          ),
+                          const Text(
+                            'Difficulty: ',
+                            style: TextStyle(fontSize: 4),
+                          ),
+                          const Text(
+                            'Beginner',
+                            style: TextStyle(fontSize: 4),
+                          ),
+                        ],
+                      ),
+                    ],
                   ),
                 ),
               ),
-              Container(
-                padding: const EdgeInsets.all(2),
-                color: categoryColor ?? Colors.white,
-                child: Text(
-                  categoryText ?? '',
-                  style:
-                      const TextStyle(fontSize: 6, fontWeight: FontWeight.bold),
-                ),
-              ),
-              const SizedBox(
-                width: 4,
-              ),
-            ],
-          ),
-          const SizedBox(
-            height: 2,
-          ),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 4),
-            child: NesContainer(
-              padding: const EdgeInsets.all(8),
-              height: MediaQuery.of(context).size.height * .15,
-              width: double.infinity,
-              child: Image.network(
-                imageUrl,
-                fit: BoxFit.fitHeight,
-              ),
             ),
-          ),
-          NesContainer(
-            padding: const EdgeInsets.all(8),
-            height: MediaQuery.of(context).size.height * .1,
-            width: double.infinity,
-            child: NesContainer(
-              backgroundColor: Colors.black12,
-              padding: const EdgeInsets.all(8),
-              child: SingleChildScrollView(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
-                        NesIcon(
-                          iconData: NesIcons.hammer,
-                          size: const Size(8, 8),
-                        ),
-                        const Text(
-                          'Difficulty: ',
-                          style: TextStyle(fontSize: 4),
-                        ),
-                        const Text(
-                          'Beginner',
-                          style: TextStyle(fontSize: 4),
-                        ),
-                      ],
-                    ),
-                  ],
-                ),
-              ),
-            ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

@@ -16,7 +16,7 @@ void main() {
             categoryText: 'category',
             imageUrl: 'imageUrl',
             title: 'title',
-            catogryColor: Colors.red,
+            categoryColor: Colors.red,
           ),
         ),
       );
@@ -34,7 +34,7 @@ void main() {
             categoryText: 'category',
             imageUrl: 'imageUrl',
             title: 'title',
-            catogryColor: Colors.red,
+            categoryColor: Colors.red,
           ),
         ),
       );

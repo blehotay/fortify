@@ -51,14 +51,14 @@ enum StartingPositionData {
 /// A class representing a card with details about a technique or action.
 @JsonSerializable()
 class FortifyCardData extends Equatable {
-  /// Creates a [FortifyCardData] with the given [title], [descripton],
+  /// Creates a [FortifyCardData] with the given [title], [description],
   /// [imageUrl],[startingPosition],and [category].
   const FortifyCardData({
     required this.title,
     required this.imageUrl,
     required this.category,
     required this.startingPosition,
-    required this.descripton,
+    required this.description,
   });
 
   /// Creates a [FortifyCardData] from a json
@@ -78,7 +78,7 @@ class FortifyCardData extends Equatable {
   final StartingPositionData startingPosition;
 
   /// The description of the card.
-  final String descripton;
+  final String description;
 
   /// Converts the current instance to a json
   Map<String, dynamic> toJson() => _$FortifyCardDataToJson(this);
@@ -88,7 +88,7 @@ class FortifyCardData extends Equatable {
         title,
         imageUrl,
         category,
-        descripton,
+        description,
         startingPosition,
       ];
 }

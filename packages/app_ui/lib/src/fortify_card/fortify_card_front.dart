@@ -11,7 +11,7 @@ class FortifyCardFront extends StatelessWidget {
     required this.title,
     required this.categoryText,
     required this.imageUrl,
-    required this.catogryColor,
+    required this.categoryColor,
     super.key,
   });
 
@@ -25,7 +25,7 @@ class FortifyCardFront extends StatelessWidget {
   final String imageUrl;
 
   /// The color associated with the category of the fortify card.
-  final Color catogryColor;
+  final Color categoryColor;
 
   @override
   Widget build(BuildContext context) {
@@ -38,7 +38,7 @@ class FortifyCardFront extends StatelessWidget {
             TitleAndCategory(
               title: title,
               categoryText: categoryText,
-              categoryColor: catogryColor,
+              categoryColor: categoryColor,
             ),
             const SizedBox(
               height: 16,

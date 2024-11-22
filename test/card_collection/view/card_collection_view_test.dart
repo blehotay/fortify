@@ -13,7 +13,7 @@ import 'package:mocktail_image_network/mocktail_image_network.dart';
 import '../../helpers/helpers.dart';
 
 class _MockCardCollectionBloc
-    extends MockBloc<CardColectionEvent, CardCollectionState>
+    extends MockBloc<CardCollectionEvent, CardCollectionState>
     implements CardCollectionBloc {}
 
 // class _MockCardCollectionBloc extends Mock implements CardCollectionBloc {}
@@ -21,7 +21,7 @@ class _MockCardCollectionBloc
 class _MockCardRepository extends Mock implements CardRepository {}
 
 void main() {
-  late CardCollectionBloc mockCardColelctionBloc;
+  late CardCollectionBloc mockCardCollectionBloc;
   late CardRepository mockedCardRepository;
 
   final earnedCards = [
@@ -30,22 +30,22 @@ void main() {
       startingPosition: StartingPosition.standing,
       title: 'Hip Pin Pass',
       description: 'List Steps',
-      imageUrl: 'imageurl',
+      imageUrl: 'imageUrl',
     ),
     // FortifyCard(
     //   category: Category.submission,
     //   startingPosition: StartingPosition.halfGuard,
     //   title: 'Kimura',
     //   description: 'List Steps',
-    //   imageUrl: 'imageurl',
+    //   imageUrl: 'imageUrl',
     // ),
   ];
 
   group('CardCollectionView', () {
     setUp(() {
-      mockCardColelctionBloc = _MockCardCollectionBloc();
+      mockCardCollectionBloc = _MockCardCollectionBloc();
       mockedCardRepository = _MockCardRepository();
-      when(() => mockCardColelctionBloc.stream).thenAnswer(
+      when(() => mockCardCollectionBloc.stream).thenAnswer(
         (_) => Stream.value(
           CardCollectionState(
             status: PageStatus.success,
@@ -58,15 +58,15 @@ void main() {
         (_) => Future.value(earnedCards),
       );
 
-      when(() => mockCardColelctionBloc.getcategoryColor(earnedCards, 0))
+      when(() => mockCardCollectionBloc.getCategoryColor(earnedCards, 0))
           .thenReturn(Colors.green);
 
       when(
-        () => mockCardColelctionBloc.getcategoryText(earnedCards, 0),
+        () => mockCardCollectionBloc.getCategoryText(earnedCards, 0),
       ).thenAnswer((_) => 'Pass');
     });
     testWidgets('renders CardCollectionView', (tester) async {
-      when(() => mockCardColelctionBloc.state).thenReturn(
+      when(() => mockCardCollectionBloc.state).thenReturn(
         CardCollectionState(
           status: PageStatus.success,
           earnedCards: earnedCards,
@@ -76,7 +76,7 @@ void main() {
       await mockNetworkImages(() async {
         await tester.pumpApp(
           BlocProvider.value(
-            value: mockCardColelctionBloc,
+            value: mockCardCollectionBloc,
             child: CardCollectionView(),
           ),
         );
@@ -89,7 +89,7 @@ void main() {
     testWidgets('renders SelectedCardView when card is tapped in grid view',
         (tester) async {
       when(
-        () => mockCardColelctionBloc.state,
+        () => mockCardCollectionBloc.state,
       ).thenReturn(
         CardCollectionState(
           earnedCards: earnedCards,
@@ -100,7 +100,7 @@ void main() {
       await mockNetworkImages(() async {
         await tester.pumpApp(
           BlocProvider.value(
-            value: mockCardColelctionBloc,
+            value: mockCardCollectionBloc,
             child: CardCollectionView(),
           ),
         );
@@ -114,13 +114,13 @@ void main() {
 
     testWidgets('renders CardCollectionErrorView', (tester) async {
       when(
-        () => mockCardColelctionBloc.state,
+        () => mockCardCollectionBloc.state,
       ).thenReturn(CardCollectionState(status: PageStatus.error));
 
       await mockNetworkImages(() async {
         await tester.pumpApp(
           BlocProvider.value(
-            value: mockCardColelctionBloc,
+            value: mockCardCollectionBloc,
             child: CardCollectionView(),
           ),
         );
@@ -129,16 +129,16 @@ void main() {
       expect(find.byType(CardCollectionErrorView), findsOneWidget);
     });
 
-    testWidgets('renders CardCollectonLoadingView when status is initial',
+    testWidgets('renders CardCollectionLoadingView when status is initial',
         (tester) async {
       when(
-        () => mockCardColelctionBloc.state,
+        () => mockCardCollectionBloc.state,
       ).thenReturn(CardCollectionState());
 
       await mockNetworkImages(() async {
         await tester.pumpApp(
           BlocProvider.value(
-            value: mockCardColelctionBloc,
+            value: mockCardCollectionBloc,
             child: CardCollectionView(),
           ),
         );
@@ -148,16 +148,16 @@ void main() {
       expect(find.byType(CardCollectionLoadingView), findsOneWidget);
     });
 
-    testWidgets('renders CardCollectonLoadingView when status is loading',
+    testWidgets('renders CardCollectionLoadingView when status is loading',
         (tester) async {
       when(
-        () => mockCardColelctionBloc.state,
+        () => mockCardCollectionBloc.state,
       ).thenReturn(CardCollectionState(status: PageStatus.loading));
 
       await mockNetworkImages(() async {
         await tester.pumpApp(
           BlocProvider.value(
-            value: mockCardColelctionBloc,
+            value: mockCardCollectionBloc,
             child: CardCollectionView(),
           ),
         );

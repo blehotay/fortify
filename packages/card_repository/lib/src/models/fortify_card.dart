@@ -1,3 +1,4 @@
+import 'package:api_client/api_client.dart';
 import 'package:equatable/equatable.dart';
 
 /// Enum representing the categories of techniques or actions.
@@ -12,7 +13,25 @@ enum Category {
   submission,
 
   /// A technique where an individual takes down their opponent.
-  takedown,
+  takedown;
+
+  /// convert from [CategoryData]
+  static Category convertToCategory(CategoryData categoryData) =>
+      switch (categoryData) {
+        CategoryData.sweep => Category.sweep,
+        CategoryData.pass => Category.pass,
+        CategoryData.submission => Category.submission,
+        CategoryData.takedown => Category.takedown,
+      };
+
+  /// convert to [CategoryData]
+  static CategoryData convertToCategoryData(Category category) =>
+      switch (category) {
+        Category.sweep => CategoryData.sweep,
+        Category.pass => CategoryData.pass,
+        Category.submission => CategoryData.submission,
+        Category.takedown => CategoryData.takedown,
+      };
 }
 
 /// Enum representing various starting positions in grappling or martial arts.
@@ -42,7 +61,35 @@ enum StartingPosition {
 
   /// Starting position where one competitor has a single leg of the opponent
   /// trapped, often used for setting up takedowns or sweeps.
-  singleLegX,
+  singleLegX;
+
+  /// convert from StartingPositionData
+  static StartingPosition convertToStartingPosition(
+    StartingPositionData startingPositionData,
+  ) =>
+      switch (startingPositionData) {
+        StartingPositionData.standing => StartingPosition.standing,
+        StartingPositionData.mount => StartingPosition.mount,
+        StartingPositionData.sideControl => StartingPosition.sideControl,
+        StartingPositionData.halfGuard => StartingPosition.halfGuard,
+        StartingPositionData.guard => StartingPosition.guard,
+        StartingPositionData.quarterGuard => StartingPosition.quarterGuard,
+        StartingPositionData.singleLegX => StartingPosition.singleLegX,
+      };
+
+  /// convert to StartingPosition
+  static StartingPositionData convertToStartingPositionData(
+    StartingPosition startingPosition,
+  ) =>
+      switch (startingPosition) {
+        StartingPosition.standing => StartingPositionData.standing,
+        StartingPosition.mount => StartingPositionData.mount,
+        StartingPosition.sideControl => StartingPositionData.sideControl,
+        StartingPosition.halfGuard => StartingPositionData.halfGuard,
+        StartingPosition.guard => StartingPositionData.guard,
+        StartingPosition.quarterGuard => StartingPositionData.quarterGuard,
+        StartingPosition.singleLegX => StartingPositionData.singleLegX,
+      };
 }
 
 /// A class representing a card with details about a technique or action.

@@ -1,11 +1,11 @@
 part of 'card_collection_bloc.dart';
 
-sealed class CardColectionEvent extends Equatable {
-  const CardColectionEvent();
+sealed class CardCollectionEvent extends Equatable {
+  const CardCollectionEvent();
 }
 
-class CardColectionRequested extends CardColectionEvent {
-  const CardColectionRequested();
+class CardCollectionRequested extends CardCollectionEvent {
+  const CardCollectionRequested();
   @override
   List<Object?> get props => [];
 }

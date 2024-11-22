@@ -55,7 +55,7 @@ void main() {
         (_) => Future.value(earnedCards),
       ),
       build: () => CardCollectionBloc(cardRepository: cardRepository),
-      act: (bloc) => bloc.add(CardColectionRequested()),
+      act: (bloc) => bloc.add(CardCollectionRequested()),
       expect: () => <CardCollectionState>[
         CardCollectionState(
           status: PageStatus.loading,
@@ -68,39 +68,39 @@ void main() {
     );
   });
 
-  test('gets correct category text when catetory is [Category.pass]', () {
+  test('gets correct category text when category is [Category.pass]', () {
     final cardCollectionBloc =
         CardCollectionBloc(cardRepository: cardRepository);
-    expect(cardCollectionBloc.getcategoryText(earnedCards, 0), 'Pass');
+    expect(cardCollectionBloc.getCategoryText(earnedCards, 0), 'Pass');
   });
 
-  test('gets correct category text when catetory is [Category.submission]', () {
+  test('gets correct category text when category is [Category.submission]', () {
     final cardCollectionBloc =
         CardCollectionBloc(cardRepository: cardRepository);
-    expect(cardCollectionBloc.getcategoryText(earnedCards, 1), 'Submission');
+    expect(cardCollectionBloc.getCategoryText(earnedCards, 1), 'Submission');
   });
 
-  test('gets correct category text when catetory is [Category.takedown]', () {
+  test('gets correct category text when category is [Category.takedown]', () {
     final cardCollectionBloc =
         CardCollectionBloc(cardRepository: cardRepository);
-    expect(cardCollectionBloc.getcategoryText(earnedCards, 2), 'Takedown');
-  });
-
-  test('gets correct color', () {
-    final cardCollectionBloc =
-        CardCollectionBloc(cardRepository: cardRepository);
-    expect(cardCollectionBloc.getcategoryColor(earnedCards, 0), Colors.green);
+    expect(cardCollectionBloc.getCategoryText(earnedCards, 2), 'Takedown');
   });
 
   test('gets correct color', () {
     final cardCollectionBloc =
         CardCollectionBloc(cardRepository: cardRepository);
-    expect(cardCollectionBloc.getcategoryColor(earnedCards, 1), Colors.red);
+    expect(cardCollectionBloc.getCategoryColor(earnedCards, 0), Colors.green);
   });
 
   test('gets correct color', () {
     final cardCollectionBloc =
         CardCollectionBloc(cardRepository: cardRepository);
-    expect(cardCollectionBloc.getcategoryColor(earnedCards, 2), Colors.orange);
+    expect(cardCollectionBloc.getCategoryColor(earnedCards, 1), Colors.red);
+  });
+
+  test('gets correct color', () {
+    final cardCollectionBloc =
+        CardCollectionBloc(cardRepository: cardRepository);
+    expect(cardCollectionBloc.getCategoryColor(earnedCards, 2), Colors.orange);
   });
 }
