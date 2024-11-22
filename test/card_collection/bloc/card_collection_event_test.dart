@@ -5,9 +5,9 @@ import 'package:fortify/card_collection/card_collection.dart';
 
 void main() {
   group('CardCollectionEvent', () {
-    group('CardColectionRequested', () {
+    group('CardCollectionRequested', () {
       test('supports value comparisons', () {
-        expect(CardColectionRequested(), equals(CardColectionRequested()));
+        expect(CardCollectionRequested(), equals(CardCollectionRequested()));
       });
     });
   });

@@ -6,18 +6,19 @@ import 'package:flutter/material.dart';
 part 'card_collection_event.dart';
 part 'card_collection_state.dart';
 
-class CardCollectionBloc extends Bloc<CardColectionEvent, CardCollectionState> {
+class CardCollectionBloc
+    extends Bloc<CardCollectionEvent, CardCollectionState> {
   CardCollectionBloc({
     required CardRepository cardRepository,
   })  : _cardRepository = cardRepository,
         super(const CardCollectionState()) {
-    on<CardColectionRequested>(_onEarnedCardRequested);
+    on<CardCollectionRequested>(_onEarnedCardRequested);
   }
 
   final CardRepository _cardRepository;
 
   Future<void> _onEarnedCardRequested(
-    CardColectionRequested event,
+    CardCollectionRequested event,
     Emitter<CardCollectionState> emit,
   ) async {
     emit(state.copyWith(status: PageStatus.loading));
@@ -39,7 +40,7 @@ class CardCollectionBloc extends Bloc<CardColectionEvent, CardCollectionState> {
     }
   }
 
-  Color getcategoryColor(List<FortifyCard> earnedCards, int index) {
+  Color getCategoryColor(List<FortifyCard> earnedCards, int index) {
     switch (earnedCards[index].category) {
       case Category.sweep:
         return Colors.blue;
@@ -52,7 +53,7 @@ class CardCollectionBloc extends Bloc<CardColectionEvent, CardCollectionState> {
     }
   }
 
-  String getcategoryText(List<FortifyCard> earnedCards, int index) {
+  String getCategoryText(List<FortifyCard> earnedCards, int index) {
     switch (earnedCards[index].category) {
       case Category.sweep:
         return 'Sweep';
