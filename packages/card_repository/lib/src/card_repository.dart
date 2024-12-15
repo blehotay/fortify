@@ -27,14 +27,14 @@ class CardRepository {
                 data.startingPosition,
               ),
               timesHitLiveRounds: data.timesHitLiveRounds,
-              earnedCardDate: data.earnedCardDate,
+              issuedDate: data.issuedDateData,
               lastTimeDrilled: data.lastTimeDrilled,
               timesTaught: data.timesTaught,
             ),
           )
           .toList();
       return cardList;
-    } catch (error, stackTrace) {
+    } on Exception catch (error, stackTrace) {
       Error.throwWithStackTrace(GetCardsFailure(error), stackTrace);
     }
   }

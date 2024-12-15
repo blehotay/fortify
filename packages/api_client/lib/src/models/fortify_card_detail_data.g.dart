@@ -16,7 +16,7 @@ FortifyCardData _$FortifyCardDataFromJson(Map<String, dynamic> json) =>
       description: json['description'] as String,
       lastTimeDrilled: json['lastTimeDrilled'] as String,
       timesHitLiveRounds: json['timesHitLiveRounds'] as String,
-      earnedCardDate: json['earnedCardDate'] as String,
+      issuedDateData: json['issuedDateData'] as String,
       timesTaught: json['timesTaught'] as String,
     );
 
@@ -31,7 +31,7 @@ Map<String, dynamic> _$FortifyCardDataToJson(FortifyCardData instance) =>
       'timesHitLiveRounds': instance.timesHitLiveRounds,
       'timesTaught': instance.timesTaught,
       'lastTimeDrilled': instance.lastTimeDrilled,
-      'earnedCardDate': instance.earnedCardDate,
+      'issuedDateData': instance.issuedDateData,
     };
 
 const _$CategoryDataEnumMap = {

@@ -6,15 +6,16 @@ import 'package:flutter_test/flutter_test.dart';
 void main() {
   group('FortifyCardData', () {
     final fortifyCardData = FortifyCardData(
-        title: 'Armbar',
-        description: 'A submission technique.',
-        imageUrl: 'http://example.com/armbar.png',
-        category: CategoryData.pass,
-        startingPosition: StartingPositionData.guard,
-        earnedCardDate: 'earnedDate',
-        timesHitLiveRounds: 'timesHitLiveRounds',
-        lastTimeDrilled: 'lastTimeDrilled',
-        timesTaught: 'timesTaught');
+      title: 'Armbar',
+      description: 'A submission technique.',
+      imageUrl: 'http://example.com/armbar.png',
+      category: CategoryData.pass,
+      startingPosition: StartingPositionData.guard,
+      issuedDateData: 'earnedDate',
+      timesHitLiveRounds: 'timesHitLiveRounds',
+      lastTimeDrilled: 'lastTimeDrilled',
+      timesTaught: 'timesTaught',
+    );
 
     test('can be de-serialized', () {
       expect(

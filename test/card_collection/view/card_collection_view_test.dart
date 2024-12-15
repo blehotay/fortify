@@ -1,12 +1,12 @@
 // ignore_for_file: prefer_const_constructors
 
+import 'package:app_ui/app_ui.dart';
 import 'package:bloc_test/bloc_test.dart';
 import 'package:card_repository/card_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:fortify/card_collection/card_collection.dart';
-import 'package:fortify/card_collection/widgets/widgets.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:mocktail_image_network/mocktail_image_network.dart';
 
@@ -31,7 +31,7 @@ void main() {
       title: 'Hip Pin Pass',
       description: 'List Steps',
       imageUrl: 'imageUrl',
-      earnedCardDate: 'earnedDate',
+      issuedDate: 'earnedDate',
       timesTaught: 'timesTaught',
       timesHitLiveRounds: 'timesHitLiveRounds',
       lastTimeDrilled: 'lastTimeDrilled',
@@ -110,10 +110,10 @@ void main() {
         );
       });
 
-      await tester.tap(find.byType(CardViewCollection));
+      await tester.tap(find.byType(FortifyCardFrontCollectionView));
       await tester.pumpAndSettle();
 
-      expect(find.byType(SelectedCardView), findsOneWidget);
+      expect(find.byType(FortifyCardFrontSelectedView), findsOneWidget);
     });
 
     testWidgets('renders CardCollectionErrorView', (tester) async {

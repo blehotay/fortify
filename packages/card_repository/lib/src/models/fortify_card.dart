@@ -104,7 +104,7 @@ class FortifyCard extends Equatable {
     required this.startingPosition,
     required this.lastTimeDrilled,
     required this.timesHitLiveRounds,
-    required this.earnedCardDate,
+    required this.issuedDate,
     required this.timesTaught,
   });
 
@@ -125,13 +125,17 @@ class FortifyCard extends Equatable {
   /// The starting position for the technique or action represented by the card.
   final StartingPosition startingPosition;
 
+  /// The amount of times the user has hit this move in a live round.
   final String timesHitLiveRounds;
 
+  /// The amount of times a user has been taught.
   final String timesTaught;
 
+  /// The last time this move was drilled.
   final String lastTimeDrilled;
 
-  final String earnedCardDate;
+  /// The date the card was issued.
+  final String issuedDate;
 
   /// Creates a copy of this [FortifyCard] but with the
   /// given parameters replaced by new values.
@@ -144,7 +148,7 @@ class FortifyCard extends Equatable {
     String? timesHitLiveRounds,
     String? timesTaught,
     String? lastTimeDrilled,
-    String? earnedCardDate,
+    String? issuedDate,
   }) {
     return FortifyCard(
       title: title ?? this.title,
@@ -155,7 +159,7 @@ class FortifyCard extends Equatable {
       timesHitLiveRounds: timesHitLiveRounds ?? this.timesHitLiveRounds,
       timesTaught: timesTaught ?? this.timesTaught,
       lastTimeDrilled: lastTimeDrilled ?? this.lastTimeDrilled,
-      earnedCardDate: earnedCardDate ?? this.earnedCardDate,
+      issuedDate: issuedDate ?? this.issuedDate,
     );
   }
 
@@ -169,6 +173,6 @@ class FortifyCard extends Equatable {
         timesHitLiveRounds,
         timesTaught,
         lastTimeDrilled,
-        earnedCardDate,
+        issuedDate,
       ];
 }

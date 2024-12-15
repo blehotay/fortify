@@ -3,9 +3,7 @@ import 'package:app_ui/app_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fortify/card_collection/card_collection.dart';
-import 'package:fortify/card_collection/widgets/selected_card_view.dart';
 import 'package:fortify/l10n/l10n.dart';
-import 'package:nes_ui/nes_ui.dart';
 
 class CardCollectionView extends StatelessWidget {
   const CardCollectionView({super.key});
@@ -24,9 +22,14 @@ class CardCollectionView extends StatelessWidget {
   }
 }
 
-class CardCollectionSuccess extends StatelessWidget {
+class CardCollectionSuccess extends StatefulWidget {
   const CardCollectionSuccess({super.key});
 
+  @override
+  State<CardCollectionSuccess> createState() => _CardCollectionSuccessState();
+}
+
+class _CardCollectionSuccessState extends State<CardCollectionSuccess> {
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n;
@@ -56,34 +59,49 @@ class CardCollectionSuccess extends StatelessWidget {
             return OpenContainer(
               transitionType: ContainerTransitionType.fadeThrough,
               transitionDuration: const Duration(milliseconds: 700),
-              closedBuilder: (_, VoidCallback openContainer) => GestureDetector(
-                onTap: openContainer,
-                child: CardViewCollection(
-                  title: earnedCards[index].title,
-                  imageUrl: earnedCards[index].imageUrl,
-                  description: earnedCards[index].description,
-                  categoryColor: context
-                      .read<CardCollectionBloc>()
-                      .getCategoryColor(earnedCards, index),
-                  categoryText: context
-                      .read<CardCollectionBloc>()
-                      .getCategoryText(earnedCards, index),
+              closedBuilder: (_, VoidCallback openContainer) {
+                return GestureDetector(
+                  onTap: openContainer,
+                  child: FortifyCardFrontCollectionView(
+                    title: earnedCards[index].title,
+                    description: earnedCards[index].description,
+                    issuedDate: earnedCards[index].issuedDate,
+                    timesHitLiveRounds: earnedCards[index].timesHitLiveRounds,
+                    timesTaught: earnedCards[index].timesTaught,
+                    lastTimeDrilled: earnedCards[index].lastTimeDrilled,
+                    categoryText: context
+                        .read<CardCollectionBloc>()
+                        .getCategoryText(earnedCards, index),
+                    imageUrl: earnedCards[index].imageUrl,
+                    categoryColor: context
+                        .read<CardCollectionBloc>()
+                        .getCategoryColor(earnedCards, index),
+                  ),
+                );
+              },
+              openBuilder: (contextBuilder, _) => Scaffold(
+                backgroundColor: const Color.fromARGB(255, 118, 127, 127),
+                appBar: AppBar(
+                  backgroundColor: const Color.fromARGB(255, 118, 127, 127),
                 ),
-              ),
-              openBuilder: (contextBuilder, _) => SelectedCardView(
-                title: earnedCards[index].title,
-                description: earnedCards[index].description,
-                earnedCardDate: earnedCards[index].earnedCardDate,
-                timesHitLiveRounds: earnedCards[index].timesHitLiveRounds,
-                timesTaught: earnedCards[index].timesTaught,
-                lastTimeDrilled: earnedCards[index].lastTimeDrilled,
-                categoryText: context
-                    .read<CardCollectionBloc>()
-                    .getCategoryText(earnedCards, index),
-                imageUrl: earnedCards[index].imageUrl,
-                categoryColor: context
-                    .read<CardCollectionBloc>()
-                    .getCategoryColor(earnedCards, index),
+                body: Padding(
+                  padding: const EdgeInsets.all(8),
+                  child: FortifyCardFrontSelectedView(
+                    title: earnedCards[index].title,
+                    description: earnedCards[index].description,
+                    issuedDate: earnedCards[index].issuedDate,
+                    timesHitLiveRounds: earnedCards[index].timesHitLiveRounds,
+                    timesTaught: earnedCards[index].timesTaught,
+                    lastTimeDrilled: earnedCards[index].lastTimeDrilled,
+                    categoryText: context
+                        .read<CardCollectionBloc>()
+                        .getCategoryText(earnedCards, index),
+                    imageUrl: earnedCards[index].imageUrl,
+                    categoryColor: context
+                        .read<CardCollectionBloc>()
+                        .getCategoryColor(earnedCards, index),
+                  ),
+                ),
               ),
             );
           },
@@ -94,99 +112,99 @@ class CardCollectionSuccess extends StatelessWidget {
 }
 
 // TODO(any): Use layout builder to make the card responsive
-class CardViewCollection extends StatelessWidget {
-  const CardViewCollection({
-    required this.title,
-    required this.imageUrl,
-    required this.description,
-    this.categoryColor,
-    this.categoryText,
-    super.key,
-  });
+// class CardViewCollection extends StatelessWidget {
+//   const CardViewCollection({
+//     required this.title,
+//     required this.imageUrl,
+//     required this.description,
+//     this.categoryColor,
+//     this.categoryText,
+//     super.key,
+//   });
 
-  final String title;
-  final String imageUrl;
-  final String description;
-  final Color? categoryColor;
-  final String? categoryText;
-  @override
-  Widget build(BuildContext context) {
-    return FortifyCardTemplate(
-      isSelectedView: false,
-      contents: [
-        const SizedBox(
-          height: 4,
-        ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Expanded(
-              child: Text(
-                textAlign: TextAlign.center,
-                title,
-                style: const TextStyle(
-                  fontSize: 10,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.white,
-                ),
-              ),
-            ),
-          ],
-        ),
-        const SizedBox(
-          height: 20,
-        ),
-        SizedBox(
-          height: MediaQuery.sizeOf(context).height * .15,
-          width: double.infinity,
-          child: Image.network(
-            imageUrl,
-            fit: BoxFit.cover,
-          ),
-        ),
-        const SizedBox(
-          height: 8,
-        ),
-        NesContainer(
-          backgroundColor: Colors.white,
-          padding: const EdgeInsets.all(1),
-          height: MediaQuery.of(context).size.height * .1,
-          width: double.infinity,
-          child: NesContainer(
-            backgroundColor: Colors.black12,
-            padding: const EdgeInsets.all(8),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                Text(
-                  textAlign: TextAlign.center,
-                  description,
-                  style: const TextStyle(fontSize: 6),
-                  overflow: TextOverflow.ellipsis,
-                  maxLines: 7,
-                ),
-              ],
-            ),
-          ),
-        ),
-        const Spacer(),
-        NesContainer(
-          backgroundColor: categoryColor,
-          padding: const EdgeInsets.all(6),
-          child: Container(
-            padding: const EdgeInsets.all(2),
-            color: categoryColor ?? Colors.white,
-            child: Text(
-              categoryText ?? '',
-              style: Theme.of(context).textTheme.bodySmall,
-            ),
-          ),
-        ),
-      ],
-    );
-  }
-}
+//   final String title;
+//   final String imageUrl;
+//   final String description;
+//   final Color? categoryColor;
+//   final String? categoryText;
+//   @override
+//   Widget build(BuildContext context) {
+//     return FortifyCardTemplate(
+//       isSelectedView: false,
+//       contents: [
+//         const SizedBox(
+//           height: 4,
+//         ),
+//         Row(
+//           mainAxisAlignment: MainAxisAlignment.spaceAround,
+//           crossAxisAlignment: CrossAxisAlignment.start,
+//           children: [
+//             Expanded(
+//               child: Text(
+//                 textAlign: TextAlign.center,
+//                 title,
+//                 style: const TextStyle(
+//                   fontSize: 10,
+//                   fontWeight: FontWeight.bold,
+//                   color: Colors.white,
+//                 ),
+//               ),
+//             ),
+//           ],
+//         ),
+//         const SizedBox(
+//           height: 20,
+//         ),
+//         SizedBox(
+//           height: MediaQuery.sizeOf(context).height * .15,
+//           width: double.infinity,
+//           child: Image.network(
+//             imageUrl,
+//             fit: BoxFit.cover,
+//           ),
+//         ),
+//         const SizedBox(
+//           height: 8,
+//         ),
+//         NesContainer(
+//           backgroundColor: Colors.white,
+//           padding: const EdgeInsets.all(1),
+//           height: MediaQuery.of(context).size.height * .1,
+//           width: double.infinity,
+//           child: NesContainer(
+//             backgroundColor: Colors.black12,
+//             padding: const EdgeInsets.all(8),
+//             child: Column(
+//               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+//               children: [
+//                 Text(
+//                   textAlign: TextAlign.center,
+//                   description,
+//                   style: const TextStyle(fontSize: 6),
+//                   overflow: TextOverflow.ellipsis,
+//                   maxLines: 7,
+//                 ),
+//               ],
+//             ),
+//           ),
+//         ),
+//         const Spacer(),
+//         NesContainer(
+//           backgroundColor: categoryColor,
+//           padding: const EdgeInsets.all(6),
+//           child: Container(
+//             padding: const EdgeInsets.all(2),
+//             color: categoryColor ?? Colors.white,
+//             child: Text(
+//               categoryText ?? '',
+//               style: Theme.of(context).textTheme.bodySmall,
+//             ),
+//           ),
+//         ),
+//       ],
+//     );
+//   }
+// }
 
 class CardCollectionErrorView extends StatelessWidget {
   const CardCollectionErrorView({

@@ -20,7 +20,7 @@ void main() {
       description: 'List Steps',
       imageUrl: 'imageUrl',
       startingPosition: StartingPosition.standing,
-      earnedCardDate: 'earnedDate',
+      issuedDate: 'earnedDate',
       timesTaught: 'timesTaught',
       timesHitLiveRounds: 'timesHitLiveRounds',
       lastTimeDrilled: 'lastTimeDrilled',
@@ -31,7 +31,7 @@ void main() {
       description: 'List Steps',
       imageUrl: 'imageUrl',
       startingPosition: StartingPosition.halfGuard,
-      earnedCardDate: 'earnedDate',
+      issuedDate: 'earnedDate',
       timesTaught: 'timesTaught',
       timesHitLiveRounds: 'timesHitLiveRounds',
       lastTimeDrilled: 'lastTimeDrilled',
@@ -45,7 +45,7 @@ void main() {
       description: 'List Steps',
       imageUrl: 'imageUrl',
       startingPosition: StartingPositionData.standing,
-      earnedCardDate: 'earnedDate',
+      issuedDateData: 'earnedDate',
       timesTaught: 'timesTaught',
       timesHitLiveRounds: 'timesHitLiveRounds',
       lastTimeDrilled: 'lastTimeDrilled',
@@ -56,7 +56,7 @@ void main() {
       description: 'List Steps',
       imageUrl: 'imageUrl',
       startingPosition: StartingPositionData.halfGuard,
-      earnedCardDate: 'earnedDate',
+      issuedDateData: 'earnedDate',
       timesTaught: 'timesTaught',
       timesHitLiveRounds: 'timesHitLiveRounds',
       lastTimeDrilled: 'lastTimeDrilled',
@@ -69,11 +69,11 @@ void main() {
       // fortifyCardResource = _MockFortifyCardResource();
 
       when(
-        () => cardRepository.getCards(),
+        cardRepository.getCards,
       ).thenAnswer((_) => Future.value(playerCards));
 
       when(
-        () => fortifyCardResource.getFortifyCards(),
+        fortifyCardResource.getFortifyCards,
       ).thenAnswer((_) async => playerCardsData);
     });
 
@@ -93,11 +93,11 @@ void main() {
 
     test('returns a list of FortifyCardData', () {
       when(
-        () => fortifyCardResource.getFortifyCards(),
+        fortifyCardResource.getFortifyCards,
       ).thenAnswer((_) => Future.value(playerCardsData));
 
       when(
-        () => cardRepository.getCards(),
+        cardRepository.getCards,
       ).thenAnswer((_) => Future.value(playerCards));
 
       final result = cardRepository.getCards();
@@ -107,12 +107,12 @@ void main() {
 
     test('throws GetCardsFailure when exception occurs', () async {
       when(
-        () => cardRepository.getCards(),
+        cardRepository.getCards,
       ).thenThrow(
         Exception(),
       );
       expect(
-        () => cardRepository.getCards(),
+        cardRepository.getCards,
         throwsA(
           isA<GetCardsFailure>(),
         ),

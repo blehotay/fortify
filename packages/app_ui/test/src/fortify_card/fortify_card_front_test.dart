@@ -12,21 +12,22 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           theme: flutterNesTheme(),
-          home: FortifyCardFront(
+          home: FortifyCardFrontSelectedView(
             categoryText: 'category',
             imageUrl: 'imageUrl',
             title: 'title',
             categoryColor: Colors.red,
-            earnedCardDate: 'earnedDate',
+            issuedDate: 'earnedDate',
             timesTaught: 'timesTaught',
             timesHitLiveRounds: 'timesHitLiveRounds',
             lastTimeDrilled: 'lastTimeDrilled',
+            description: 'description',
           ),
         ),
       );
     });
 
-    expect(find.byType(FortifyCardFront), findsOneWidget);
+    expect(find.byType(FortifyCardFrontSelectedView), findsOneWidget);
   });
 
   testWidgets('FortifyCardFront finds contents ', (tester) async {
@@ -34,15 +35,16 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           theme: flutterNesTheme(),
-          home: FortifyCardFront(
+          home: FortifyCardFrontSelectedView(
             categoryText: 'category',
             imageUrl: 'imageUrl',
             title: 'title',
             categoryColor: Colors.red,
-            earnedCardDate: 'earnedDate',
+            issuedDate: 'earnedDate',
             timesTaught: 'timesTaught',
             timesHitLiveRounds: 'timesHitLiveRounds',
             lastTimeDrilled: 'lastTimeDrilled',
+            description: 'description',
           ),
         ),
       );

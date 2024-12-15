@@ -61,11 +61,11 @@ class FortifyCardData extends Equatable {
     required this.description,
     required this.lastTimeDrilled,
     required this.timesHitLiveRounds,
-    required this.earnedCardDate,
+    required this.issuedDateData,
     required this.timesTaught,
   });
 
-  /// Creates a [FortifyCardData] from a json
+  /// Creates a [FortifyCardData] from a json.
   factory FortifyCardData.fromJson(Map<String, dynamic> json) =>
       _$FortifyCardDataFromJson(json);
 
@@ -84,15 +84,19 @@ class FortifyCardData extends Equatable {
   /// The description of the card.
   final String description;
 
+  /// The amount of times the user has hit this move in a live round.
   final String timesHitLiveRounds;
 
+  /// The amount of times a user has been taught.
   final String timesTaught;
 
+  /// The last time this move was drilled.
   final String lastTimeDrilled;
 
-  final String earnedCardDate;
+  /// The date the card was issued.
+  final String issuedDateData;
 
-  /// Converts the current instance to a json
+  /// Converts the current instance to a json.
   Map<String, dynamic> toJson() => _$FortifyCardDataToJson(this);
 
   @override
@@ -105,6 +109,6 @@ class FortifyCardData extends Equatable {
         timesHitLiveRounds,
         timesTaught,
         lastTimeDrilled,
-        earnedCardDate,
+        issuedDateData,
       ];
 }
