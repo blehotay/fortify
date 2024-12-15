@@ -13,7 +13,11 @@ FortifyCardData _$FortifyCardDataFromJson(Map<String, dynamic> json) =>
       category: $enumDecode(_$CategoryDataEnumMap, json['category']),
       startingPosition:
           $enumDecode(_$StartingPositionDataEnumMap, json['startingPosition']),
-      descripton: json['descripton'] as String,
+      description: json['description'] as String,
+      lastTimeDrilled: json['lastTimeDrilled'] as String,
+      timesHitLiveRounds: json['timesHitLiveRounds'] as String,
+      issuedDateData: json['issuedDateData'] as String,
+      timesTaught: json['timesTaught'] as String,
     );
 
 Map<String, dynamic> _$FortifyCardDataToJson(FortifyCardData instance) =>
@@ -23,7 +27,11 @@ Map<String, dynamic> _$FortifyCardDataToJson(FortifyCardData instance) =>
       'category': _$CategoryDataEnumMap[instance.category]!,
       'startingPosition':
           _$StartingPositionDataEnumMap[instance.startingPosition]!,
-      'descripton': instance.descripton,
+      'description': instance.description,
+      'timesHitLiveRounds': instance.timesHitLiveRounds,
+      'timesTaught': instance.timesTaught,
+      'lastTimeDrilled': instance.lastTimeDrilled,
+      'issuedDateData': instance.issuedDateData,
     };
 
 const _$CategoryDataEnumMap = {
