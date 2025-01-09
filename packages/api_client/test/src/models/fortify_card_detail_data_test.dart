@@ -11,7 +11,7 @@ void main() {
       imageUrl: 'http://example.com/armbar.png',
       category: CategoryData.pass,
       startingPosition: StartingPositionData.guard,
-      issuedDateData: 'earnedDate',
+      earnedCardDate: 'earnedDate',
       timesHitLiveRounds: 'timesHitLiveRounds',
       lastTimeDrilled: 'lastTimeDrilled',
       timesTaught: 'timesTaught',

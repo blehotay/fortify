@@ -27,7 +27,7 @@ class CardRepository {
                 data.startingPosition,
               ),
               timesHitLiveRounds: data.timesHitLiveRounds,
-              issuedDate: data.issuedDateData,
+              issuedDate: data.earnedCardDate,
               lastTimeDrilled: data.lastTimeDrilled,
               timesTaught: data.timesTaught,
             ),

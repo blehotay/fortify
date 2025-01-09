@@ -61,7 +61,7 @@ class FortifyCardData extends Equatable {
     required this.description,
     required this.lastTimeDrilled,
     required this.timesHitLiveRounds,
-    required this.issuedDateData,
+    required this.earnedCardDate,
     required this.timesTaught,
   });
 
@@ -94,7 +94,7 @@ class FortifyCardData extends Equatable {
   final String lastTimeDrilled;
 
   /// The date the card was issued.
-  final String issuedDateData;
+  final String earnedCardDate;
 
   /// Converts the current instance to a json.
   Map<String, dynamic> toJson() => _$FortifyCardDataToJson(this);
@@ -109,6 +109,6 @@ class FortifyCardData extends Equatable {
         timesHitLiveRounds,
         timesTaught,
         lastTimeDrilled,
-        issuedDateData,
+        earnedCardDate,
       ];
 }

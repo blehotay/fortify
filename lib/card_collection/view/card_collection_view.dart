@@ -37,11 +37,19 @@ class _CardCollectionSuccessState extends State<CardCollectionSuccess> {
     return Scaffold(
       backgroundColor: const Color.fromARGB(255, 118, 127, 127),
       appBar: AppBar(
-        backgroundColor: const Color.fromARGB(255, 118, 127, 127),
-        elevation: 0,
+        toolbarHeight: 36,
         title: Text(
           l10n.earnedCollection,
+          style: TextStyle(fontSize: 12),
         ),
+
+        actions: [IconButton(onPressed: () {}, icon: const Icon(Icons.person))],
+        backgroundColor: const Color.fromARGB(255, 118, 127, 127),
+        elevation: 8,
+        // title: Text(
+        //   l10n.earnedCollection,
+        //   style: TextStyle(fontSize: 8),
+        // ),
       ),
       body: Padding(
         padding: const EdgeInsets.only(top: 8),
@@ -214,8 +222,12 @@ class CardCollectionErrorView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const Scaffold(
+      backgroundColor: Color.fromARGB(255, 118, 127, 127),
       body: Center(
-        child: Text('Error'),
+        child: Text(
+          'Error',
+          style: TextStyle(color: Colors.white),
+        ),
       ),
     );
   }
