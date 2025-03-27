@@ -51,17 +51,21 @@ enum StartingPositionData {
 /// A class representing a card with details about a technique or action.
 @JsonSerializable()
 class FortifyCardData extends Equatable {
-  /// Creates a [FortifyCardData] with the given [title], [descripton],
+  /// Creates a [FortifyCardData] with the given [title], [description],
   /// [imageUrl],[startingPosition],and [category].
   const FortifyCardData({
     required this.title,
     required this.imageUrl,
     required this.category,
     required this.startingPosition,
-    required this.descripton,
+    required this.description,
+    required this.lastTimeDrilled,
+    required this.timesHitLiveRounds,
+    required this.earnedCardDate,
+    required this.timesTaught,
   });
 
-  /// Creates a [FortifyCardData] from a json
+  /// Creates a [FortifyCardData] from a json.
   factory FortifyCardData.fromJson(Map<String, dynamic> json) =>
       _$FortifyCardDataFromJson(json);
 
@@ -78,9 +82,21 @@ class FortifyCardData extends Equatable {
   final StartingPositionData startingPosition;
 
   /// The description of the card.
-  final String descripton;
+  final String description;
 
-  /// Converts the current instance to a json
+  /// The amount of times the user has hit this move in a live round.
+  final String timesHitLiveRounds;
+
+  /// The amount of times a user has been taught.
+  final String timesTaught;
+
+  /// The last time this move was drilled.
+  final String lastTimeDrilled;
+
+  /// The date the card was issued.
+  final String earnedCardDate;
+
+  /// Converts the current instance to a json.
   Map<String, dynamic> toJson() => _$FortifyCardDataToJson(this);
 
   @override
@@ -88,7 +104,11 @@ class FortifyCardData extends Equatable {
         title,
         imageUrl,
         category,
-        descripton,
+        description,
         startingPosition,
+        timesHitLiveRounds,
+        timesTaught,
+        lastTimeDrilled,
+        earnedCardDate,
       ];
 }

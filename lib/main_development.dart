@@ -8,8 +8,7 @@ void main() {
     final cardRepository = CardRepository(
       fortifyCardResource: FortifyCardResource(
         client: ApiClient(
-          baseUrl: 'https://postman-rest-api-learner.glitch.me/',
-          // token: 'your_token',
+          baseUrl: 'https://f706adae-a5c3-4f46-b484-44a79743ea82.mock.pstmn.io',
         ),
       ),
     );

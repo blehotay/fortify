@@ -9,6 +9,10 @@ void main() {
       imageUrl: 'http://example.com/armbar.png',
       category: Category.submission,
       startingPosition: StartingPosition.guard,
+      issuedDate: 'earnedDate',
+      timesTaught: 'timesTaught',
+      timesHitLiveRounds: 'timesHitLiveRounds',
+      lastTimeDrilled: 'lastTimeDrilled',
     );
 
     const card2 = FortifyCard(
@@ -17,6 +21,10 @@ void main() {
       imageUrl: 'http://example.com/armbar.png',
       category: Category.pass,
       startingPosition: StartingPosition.guard,
+      issuedDate: 'earnedDate',
+      timesTaught: 'timesTaught',
+      timesHitLiveRounds: 'timesHitLiveRounds',
+      lastTimeDrilled: 'lastTimeDrilled',
     );
 
     test('supports value equality', () {
@@ -30,12 +38,14 @@ void main() {
         description: 'Updated Description',
         imageUrl: 'http://example.com/updated.png',
         category: Category.pass,
+        startingPosition: StartingPosition.standing,
       );
 
       expect(updatedCard.title, 'Updated Title');
       expect(updatedCard.description, 'Updated Description');
       expect(updatedCard.imageUrl, 'http://example.com/updated.png');
       expect(updatedCard.category, Category.pass);
+      expect(updatedCard.startingPosition, StartingPosition.standing);
     });
 
     test('copyWith retains old values if no new values are provided', () {
@@ -45,12 +55,19 @@ void main() {
       expect(updatedCard.description, 'A submission technique.');
       expect(updatedCard.imageUrl, 'http://example.com/armbar.png');
       expect(updatedCard.category, Category.submission);
+      expect(updatedCard.startingPosition, StartingPosition.guard);
     });
 
     test('props returns correct values', () {
       expect(
         card.props,
-        [card.title, card.description, card.imageUrl, card.category],
+        [
+          card.title,
+          card.description,
+          card.imageUrl,
+          card.category,
+          card.startingPosition,
+        ],
       );
     });
   });

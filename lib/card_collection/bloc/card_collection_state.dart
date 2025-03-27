@@ -1,12 +1,12 @@
 part of 'card_collection_bloc.dart';
 
-enum PageStatus { inital, loading, success, error }
+enum PageStatus { initial, loading, success, error }
 
 class CardCollectionState extends Equatable {
   const CardCollectionState({
     this.earnedCards = const [],
     this.purchasedCards = const [],
-    this.status = PageStatus.inital,
+    this.status = PageStatus.initial,
   });
 
   final List<FortifyCard>? earnedCards;

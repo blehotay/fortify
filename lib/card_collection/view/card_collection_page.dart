@@ -11,7 +11,7 @@ class CardCollectionPage extends StatelessWidget {
     return BlocProvider(
       create: (_) => CardCollectionBloc(
         cardRepository: context.read<CardRepository>(),
-      )..add(const CardColectionRequested()),
+      )..add(const CardCollectionRequested()),
       child: const CardCollectionView(),
     );
   }
