@@ -1,11 +1,10 @@
 import 'package:card_repository/card_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:fortify/app/bottom_nav/bottom_nav.dart';
 import 'package:fortify/card_collection/card_collection.dart';
 import 'package:fortify/l10n/l10n.dart';
 import 'package:nes_ui/nes_ui.dart';
-
-import '../app.dart';
 
 class App extends StatelessWidget {
   const App({required CardRepository cardRepository, super.key})
@@ -33,9 +32,15 @@ class AppView extends StatelessWidget {
     return BlocProvider(
       create: (_) => BottomNavCubit(),
       child: MaterialApp(
-        color: Color.fromARGB(255, 118, 127, 127),
-        theme:
-            flutterNesTheme(primaryColor: Color.fromARGB(255, 118, 127, 127)),
+        color: const Color.fromARGB(255, 118, 127, 127),
+        theme: flutterNesTheme(
+          primaryColor: const Color.fromARGB(
+            255,
+            118,
+            127,
+            127,
+          ),
+        ),
         localizationsDelegates: AppLocalizations.localizationsDelegates,
         supportedLocales: AppLocalizations.supportedLocales,
         home: const RootScreen(),

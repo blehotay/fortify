@@ -40,7 +40,7 @@ class _CardCollectionSuccessState extends State<CardCollectionSuccess> {
         toolbarHeight: 36,
         title: Text(
           l10n.earnedCollection,
-          style: TextStyle(fontSize: 12),
+          style: const TextStyle(fontSize: 12),
         ),
 
         actions: [IconButton(onPressed: () {}, icon: const Icon(Icons.person))],

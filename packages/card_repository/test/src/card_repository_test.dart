@@ -63,60 +63,66 @@ void main() {
     ),
   ];
 
-  group('CardRepository', () {
-    setUp(() {
-      // cardRepository = _MockCardRepository();
-      // fortifyCardResource = _MockFortifyCardResource();
+  group(
+    'CardRepository',
+    () {
+      setUp(() {
+        // cardRepository = _MockCardRepository();
+        // fortifyCardResource = _MockFortifyCardResource();
 
-      when(
-        cardRepository.getCards,
-      ).thenAnswer((_) => Future.value(playerCards));
+        when(
+          cardRepository.getCards,
+        ).thenAnswer((_) => Future.value(playerCards));
 
-      when(
-        fortifyCardResource.getFortifyCards,
-      ).thenAnswer((_) async => playerCardsData);
-    });
+        when(
+          fortifyCardResource.getFortifyCards,
+        ).thenAnswer((_) async => playerCardsData);
+      });
 
-    test('can be instantiated', () {
-      expect(
-        CardRepository(fortifyCardResource: fortifyCardResource),
-        isNotNull,
+      test('can be instantiated', () {
+        expect(
+          CardRepository(fortifyCardResource: fortifyCardResource),
+          isNotNull,
+        );
+      });
+
+      // TODO(ben): fix text so it hits breakpoint in repo
+      test('fetchCards returns a list of FortifyCard', () async {
+        final cards = cardRepository.getCards();
+
+        expect(cards, isA<Future<List<FortifyCard>>>());
+      });
+
+      test(
+        'returns a list of FortifyCardData',
+        () {
+          when(
+            fortifyCardResource.getFortifyCards,
+          ).thenAnswer((_) => Future.value(playerCardsData));
+
+          when(
+            cardRepository.getCards,
+          ).thenAnswer((_) => Future.value(playerCards));
+
+          final result = cardRepository.getCards();
+
+          expect(result, isNotNull);
+        },
       );
-    });
 
-    // TODO(ben): fix text so it hits breakpoint in repo
-    test('fetchCards returns a list of FortifyCard', () async {
-      final cards = cardRepository.getCards();
-
-      expect(cards, isA<Future<List<FortifyCard>>>());
-    });
-
-    test('returns a list of FortifyCardData', () {
-      when(
-        fortifyCardResource.getFortifyCards,
-      ).thenAnswer((_) => Future.value(playerCardsData));
-
-      when(
-        cardRepository.getCards,
-      ).thenAnswer((_) => Future.value(playerCards));
-
-      final result = cardRepository.getCards();
-
-      expect(result, isNotNull);
-    });
-
-    test('throws GetCardsFailure when exception occurs', () async {
-      when(
-        cardRepository.getCards,
-      ).thenThrow(
-        Exception(),
-      );
-      expect(
-        cardRepository.getCards,
-        throwsA(
-          isA<GetCardsFailure>(),
-        ),
-      );
-    });
-  });
+      test('throws GetCardsFailure when exception occurs', () {
+        when(
+          cardRepository.getCards,
+        ).thenThrow(
+          Exception(),
+        );
+        expect(
+          cardRepository.getCards,
+          throwsA(
+            isA<GetCardsFailure>(),
+          ),
+        );
+      });
+    },
+  );
 }
