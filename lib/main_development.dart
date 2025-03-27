@@ -8,11 +8,8 @@ void main() {
     final cardRepository = CardRepository(
       fortifyCardResource: FortifyCardResource(
         client: ApiClient(
-            // baseUrl: 'https://bb7d63ca-2ebb-456a-ab01-a88c4dd43475.mock.pstmn.io',
-            baseUrl:
-                'https://f706adae-a5c3-4f46-b484-44a79743ea82.mock.pstmn.io'
-            // token: 'your_token',
-            ),
+          baseUrl: 'https://f706adae-a5c3-4f46-b484-44a79743ea82.mock.pstmn.io',
+        ),
       ),
     );
 
